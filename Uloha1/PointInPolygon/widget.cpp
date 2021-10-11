@@ -33,11 +33,7 @@ void Widget::on_pushButtonAnalyze_clicked()
     QPoint q=ui->Canvas->getPoint();
     std::vector<QPoint> pol=ui->Canvas->getPolygon();
     Algorithms a;
-    int pos =0;
-    if (ui->methodcomboBox->currentIndex()==0)
-        pos=a.getPositionWinding(q,pol);
-    else
-        pos=a.getPositionRayCrossing(q,pol);
+    int pos=a.getPositionWinding(q,pol);
 
     //draw results
     if(pos==1)
@@ -46,6 +42,7 @@ void Widget::on_pushButtonAnalyze_clicked()
         ui->label->setText("Outside");
     else
         ui->label->setText("Border");
+
 }
 
 

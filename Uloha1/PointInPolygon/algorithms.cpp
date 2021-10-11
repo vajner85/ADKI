@@ -79,11 +79,10 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
         //Point in the left halfplane
         if(pos==1)
             {omega_sum +=omega;}
-        else if (pos==0)
+        else if(pos==0)
             {omega_sum -=omega;}
         else {return -1;}
     }
-
 
     //Point inside polygon
     double eps=1.0e-10;
@@ -91,39 +90,8 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
         {return 1;}
     else
         {return 0;}
+
+
+
+
 }
-int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
-{
-    //Analyze position of point and polygon
-    int n=pol.size();
-    int k=0;
-
-
-    double xc=pol[0].x()-q.x();
-    double yc=pol[0].y()-q.y();
-
-
-    for (int i=1; i<n+1;i++)
-    {
-        double xcc=pol[i].x()-q.x();
-        double ycc=pol[i].y()-q.y();
-
-        if ((yc>0)&&(ycc<=0)||(ycc>0)&&(yc<=0))
-        {
-        double xcm=(xc*ycc-xcc*yc)/(yc-ycc);
-
-        if(xcm>0)
-            k = k+1;
-        }
-    }
-    if ((k%2)!=0)
-    {return 1;}
-    else
-    {return 0;}
-}
-
-
-
-
-
-

@@ -34,15 +34,15 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="methodcomboBox">
+      <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
-         <string>Winding number</string>
+         <string>Ray crossing</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Ray crossing</string>
+         <string>Winding number</string>
         </property>
        </item>
       </widget>
