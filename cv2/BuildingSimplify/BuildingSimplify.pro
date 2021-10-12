@@ -12,11 +12,13 @@ SOURCES += \
     algorithms.cpp \
     draw.cpp \
     main.cpp \
+    sortbyy.cpp \
     widget.cpp
 
 HEADERS += \
     algorithms.h \
     draw.h \
+    sortbyy.h \
     widget.h
 
 FORMS += \

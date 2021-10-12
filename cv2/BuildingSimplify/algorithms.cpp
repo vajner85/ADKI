@@ -1,5 +1,6 @@
 #include "algorithms.h"
 #include<cmath>
+#include "sortbyy.h"
 
 Algorithms::Algorithms()
 {
@@ -29,4 +30,51 @@ double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4
     return fabs(acos(dp/(nu*nv)));
 
 
+}
+
+QPolygon Algorithms::cHull(std::vector <QPoint> &points)
+{
+    QPolygon ch;
+
+    //Sort points by y
+    std::sort(points.begin(),points.end(), sortByY());
+
+    //Find pivot
+    QPoint q = points[0];
+
+    //Add pivot to convex hull
+    ch.append(q);
+
+    //Create pj,pjj
+    QPoint pj=q;
+    QPoint pjj(0,q.y());
+
+    do
+    {
+        int i_max=-1;
+        double om_max=0;
+
+        //Find next point
+        for(int i=1; i < points.size(); i++)
+        {
+            double om=get2LinesAngle(pj,pjj,pj,points[i]);
+
+            //Find max angle and its position
+            if (om>om_max)
+            {
+                om_max=om;
+                i_max=i;
+            }
+        }
+
+        //Add point to convex hull
+        ch.append(points[i_max]);
+
+        //Update points to next ones
+        pjj=pj;
+        pj=points[i_max];
+
+    } while (pj !=q);
+
+    return ch;
 }

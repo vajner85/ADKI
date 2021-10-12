@@ -16,7 +16,8 @@ class Draw : public QWidget
         void paintEvent(QPaintEvent *event);
         void mousePressEvent(QMouseEvent *event);
         void clear();
-
+        std::vector<QPoint> getPoints(){return points;};
+        void setCh(QPolygon &ch_){ch=ch_;};
 
 
 };
