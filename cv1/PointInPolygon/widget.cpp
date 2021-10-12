@@ -35,9 +35,9 @@ void Widget::on_pushButtonAnalyze_clicked()
     Algorithms a;
     int pos =0;
     if (ui->methodcomboBox->currentIndex()==0)
-        pos=a.getPositionWinding(q,pol);
-    else
-        pos=a.getPositionRayCrossing(q,pol);
+        {pos=a.getPositionWinding(q,pol);}
+    if (ui->methodcomboBox->currentIndex()==1)
+        {pos=a.getPositionRayCrossing(q,pol);}
 
     //draw results
     if(pos==1)

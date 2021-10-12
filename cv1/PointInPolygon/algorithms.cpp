@@ -33,7 +33,7 @@ int Algorithms::getPointLinePosition(QPoint &a, QPoint &p1, QPoint &p2)
     }
 
     //Point on the line
-    return -1;
+    else return -1;
 }
 
 double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
@@ -74,12 +74,12 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
         double omega=get2LinesAngle(pol[i],q,pol[(i+1)%n],q);
 
         //Compute position of point and line segment
-        int pos=getPointLinePosition(q,pol[i],pol[(i+1)%n]);
+        int poss=getPointLinePosition(q,pol[i],pol[(i+1)%n]);
 
         //Point in the left halfplane
-        if(pos==1)
+        if(poss==1)
             {omega_sum +=omega;}
-        else if (pos==0)
+        else if (poss==0)
             {omega_sum -=omega;}
         else {return -1;}
     }
@@ -94,32 +94,41 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
 }
 int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
 {
+    int eps=1.0e-10;
     //Analyze position of point and polygon
     int n=pol.size();
-    int k=0;
 
-
-    double xc=pol[0].x()-q.x();
-    double yc=pol[0].y()-q.y();
+    //Intersection count
+    int k=0;    //right
+    int k1=0;   //left
 
 
     for (int i=1; i<n+1;i++)
     {
-        double xcc=pol[i].x()-q.x();
-        double ycc=pol[i].y()-q.y();
+        double xc=pol[i%n].x()-q.x();
+        double yc=pol[i%n].y()-q.y();
 
-        if ((yc>0)&&(ycc<=0)||(ycc>0)&&(yc<=0))
+        double xcc=pol[i-1].x()-q.x();
+        double ycc=pol[i-1].y()-q.y();
+
+        if ((yc>0) && (ycc<=0) || (ycc>0) && (yc<=0))
         {
-        double xcm=(xc*ycc-xcc*yc)/(yc-ycc);
+            double xcm=(xc*ycc-xcc*yc)/(yc-ycc);
 
-        if(xcm>0)
-            k = k+1;
+                if(xcm>-eps)
+                    k = k+1;    //right
+                if (xcm<eps)
+                    k1 = k1+1;  //left
         }
     }
+
+    //Border singularity
+    if (k1%2<k%2 || k1%2>k%2)
+        {return -1;}
     if ((k%2)!=0)
-    {return 1;}
+        {return 1;}
     else
-    {return 0;}
+        {return 0;}
 }
 
 
