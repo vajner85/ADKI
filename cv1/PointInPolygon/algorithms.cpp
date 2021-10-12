@@ -125,6 +125,7 @@ int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
     //Border singularity
     if (k1%2<k%2 || k1%2>k%2)
         {return -1;}
+
     if ((k%2)!=0)
         {return 1;}
     else
