@@ -91,7 +91,44 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
     else
         {return 0;}
 
+}
+
+int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
+{
+    int eps=1.0e-10;
+    //Analyze position of point and polygon
+    int n=pol.size();
+
+    //Intersection count
+    int k=0;    //right
+    int k1=0;   //left
 
 
+    for (int i=1; i<n+1;i++)
+    {
+        double xc=pol[i%n].x()-q.x();
+        double yc=pol[i%n].y()-q.y();
 
+        double xcc=pol[i-1].x()-q.x();
+        double ycc=pol[i-1].y()-q.y();
+
+        if ((yc>0) && (ycc<=0) || (ycc>0) && (yc<=0))
+        {
+            double xcm=(xc*ycc-xcc*yc)/(yc-ycc);
+
+                if(xcm>-eps)
+                    k = k+1;    //right
+                if (xcm<eps)
+                    k1 = k1+1;  //left
+        }
+    }
+
+    //Border singularity
+    if (k1%2<k%2 || k1%2>k%2)
+        {return -1;}
+
+    if ((k%2)!=0)
+        {return 1;}
+    else
+        {return 0;}
 }
