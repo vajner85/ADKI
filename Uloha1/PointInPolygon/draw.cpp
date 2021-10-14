@@ -1,6 +1,6 @@
 #include "draw.h"
 #include <QtGui>
-
+#include <fstream>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -68,4 +68,27 @@ void Draw::clear()
     //Clear and repaint
     vertices.clear();
     repaint();
+}
+
+void Draw::loadFile(std::string &path)
+{
+    int id;
+    double x;
+    double y;
+    QPolygon pol;
+    QPoint p;
+
+    //Loading files
+    std::ifstream file(path);
+
+    if (file.is_open())
+    {
+        while (file >> id >> x >> y)
+        {
+            p.setX(x);
+            p.setY(y);
+            pol.append(p);
+        }
+    }
+        file.close();
 }

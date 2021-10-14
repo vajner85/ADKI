@@ -1,7 +1,10 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <algorithms.h>
-
+#include <fstream>
+#include <fstream>
+#include "draw.h"
+#include <QFileDialog>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -49,4 +52,16 @@ void Widget::on_pushButtonAnalyze_clicked()
 }
 
 
+
+
+void Widget::on_pushButtonLoadFile_clicked()
+{
+    QString path(QFileDialog::getOpenFileName
+                 (this, tr("Opening of file"),
+                  "../",
+                  tr("Text Files (*.txt)")));
+       std::string path_ = path.toStdString();
+
+       ui->Canvas->loadFile(path_);
+}
 

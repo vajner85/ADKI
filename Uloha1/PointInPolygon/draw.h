@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <vector>
+#include <QtGui>
 
 class Draw : public QWidget
 {
@@ -12,6 +13,7 @@ private:
     std::vector<QPoint> vertices;
     QPoint q;
     bool add_vertex;
+    double x,y;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -21,6 +23,9 @@ public:
     void changeStatus(){add_vertex=!add_vertex;};
     QPoint getPoint(){return q;};
     std::vector<QPoint> getPolygon(){return vertices;};
+    void loadFile(std::string &path);
+    void setX(double x_){x=x_;};
+    void setY(double y_){y=y_;};
 
 signals:
 
