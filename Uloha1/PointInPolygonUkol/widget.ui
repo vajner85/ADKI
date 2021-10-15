@@ -61,9 +61,23 @@
       </spacer>
      </item>
      <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Drawing:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_draw">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>Point/Vertex</string>
+        <string>Enabled/disabled</string>
        </property>
       </widget>
      </item>

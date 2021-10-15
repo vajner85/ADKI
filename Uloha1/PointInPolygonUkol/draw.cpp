@@ -6,9 +6,9 @@
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
+    enabledraw = false;
     q.setX(-100);
     q.setY(-100);
-    add_vertex = true;
 }
 
 void Draw::paintEvent(QPaintEvent *event)
@@ -17,23 +17,17 @@ void Draw::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.begin(this);
 
-    //Setting path
+    //Path setter
     QPainterPath path;
 
-    //Draw loaded polygons
+    //Draw polygon
         for(int i = 0; i < pol.size(); i++)
         {
             QPolygonF poly = pol[i];
             painter.drawPolygon(poly);
         }
-
     //Draw point
     painter.drawEllipse(q.x()-4,q.y()-4,8,8);
-
-
-    //Improvements
-    //for( QPoint vertex : vertices)
-    //    pol.append(vertex);
 
     painter.end();
 }
@@ -44,11 +38,13 @@ void Draw::mousePressEvent(QMouseEvent *event)
     int x = event->pos().x();
     int y = event->pos().y();
 
-    //Modify coord q
 
-       q.setX(x);
-       q.setY(y);
-
+    if (enabledraw)
+    {
+        //Modify coord q
+        q.setX(x);
+        q.setY(y);
+    }
     //Repaint screen
     repaint();
 }
@@ -56,7 +52,7 @@ void Draw::mousePressEvent(QMouseEvent *event)
 void Draw::clear()
 {
     //Clear and repaint
-    vertices.clear();
+    pol.clear();
     repaint();
 }
 
@@ -71,12 +67,10 @@ void Draw::loadFile(std::string &path)
     //Loading files
     std::ifstream file(path);
 
-
    if (file.is_open())
       {
         while (file >> id >> x >> y )
         {
-
             if (i == id)
             {
                 // pushing back the current polygon
@@ -84,9 +78,9 @@ void Draw::loadFile(std::string &path)
                 p.setY(y);
                 poly.push_back(p);
             }
-
-            else {
-                // creating of a new polygon
+            else
+            {
+                // creating new polygon
                 pol.push_back(poly);
                 poly.clear();
                 // adding of a new point to the new polygon
@@ -95,8 +89,7 @@ void Draw::loadFile(std::string &path)
                 poly.push_back(p);
                 i = 1;
             }
-
-            i++;
+          i++;
           }
             //Saving
             pol.push_back(poly);
@@ -104,7 +97,7 @@ void Draw::loadFile(std::string &path)
             //Erasing of all the polygons
             poly.clear();
 
-            //Closing file
-             file.close();
-}
+     //Closing file
+     file.close();
+    }
 }

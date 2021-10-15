@@ -5,15 +5,16 @@
 #include <vector>
 #include <QtGui>
 #include "algorithms.h"
+#include <QString>
 
 class Draw : public QWidget
 {
     Q_OBJECT
 
 private:
-    std::vector<QPoint> vertices;
     QPoint q;
-    bool add_vertex;
+    boolean enabledraw;
+
     double x,y;
     std::vector<QPolygonF> pol;
     std::vector<int> result;
@@ -23,7 +24,7 @@ public:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void clear();
-    void changeStatus(){add_vertex=!add_vertex;};
+    void changeStatus(){enabledraw=!enabledraw;};
     QPointF getPoint(){return q;};
     std::vector<QPolygonF> getPolygon(){return pol;};
     void loadFile(std::string &path);
