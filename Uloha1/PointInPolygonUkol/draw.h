@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <vector>
 #include <QtGui>
+#include "algorithms.h"
 
 class Draw : public QWidget
 {
@@ -14,7 +15,8 @@ private:
     QPoint q;
     bool add_vertex;
     double x,y;
-    std::vector<QPolygonF> polygons;
+    std::vector<QPolygonF> pol;
+    std::vector<int> result;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -22,8 +24,8 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void clear();
     void changeStatus(){add_vertex=!add_vertex;};
-    QPoint getPoint(){return q;};
-    std::vector<QPoint> getPolygon(){return vertices;};
+    QPointF getPoint(){return q;};
+    std::vector<QPolygonF> getPolygon(){return pol;};
     void loadFile(std::string &path);
     void setX(double x_){x=x_;};
     void setY(double y_){y=y_;};

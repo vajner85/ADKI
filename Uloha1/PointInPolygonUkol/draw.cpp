@@ -1,6 +1,8 @@
 #include "draw.h"
 #include <QtGui>
 #include <fstream>
+#include <QWidget>
+#include <fstream>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -15,16 +17,13 @@ void Draw::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.begin(this);
 
-    //Create new polygon
-    QPolygon pol;
-
     //Setting path
     QPainterPath path;
 
     //Draw loaded polygons
-        for(int i = 0; i < polygons.size(); i++)
+        for(int i = 0; i < pol.size(); i++)
         {
-            QPolygonF poly = polygons[i];
+            QPolygonF poly = pol[i];
             painter.drawPolygon(poly);
         }
 
@@ -63,24 +62,49 @@ void Draw::clear()
 
 void Draw::loadFile(std::string &path)
 {
-    int id;
+    int id,i;
     double x;
     double y;
-    QPolygonF polygon;
+    QPolygonF poly;
     QPointF p;
 
     //Loading files
     std::ifstream file(path);
 
-    if (file.is_open())
-    {
-        while (file >> id >> x >> y)
+
+   if (file.is_open())
+      {
+        while (file >> id >> x >> y )
         {
-            p.setX(x);
-            p.setY(y);
-            polygon.push_back(p);
-        }
-    }
-        polygons.push_back(polygon);
-        file.close();
+
+            if (i == id)
+            {
+                // pushing back the current polygon
+                p.setX(x);
+                p.setY(y);
+                poly.push_back(p);
+            }
+
+            else {
+                // creating of a new polygon
+                pol.push_back(poly);
+                poly.clear();
+                // adding of a new point to the new polygon
+                p.setX(x);
+                p.setY(y);
+                poly.push_back(p);
+                i = 1;
+            }
+
+            i++;
+          }
+            //Saving
+            pol.push_back(poly);
+
+            //Erasing of all the polygons
+            poly.clear();
+
+            //Closing file
+             file.close();
+}
 }

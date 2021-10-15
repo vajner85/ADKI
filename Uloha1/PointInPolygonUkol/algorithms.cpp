@@ -6,7 +6,7 @@ Algorithms::Algorithms()
 
 }
 
-int Algorithms::getPointLinePosition(QPoint &a, QPoint &p1, QPoint &p2)
+int Algorithms::getPointLinePosition(QPointF &a, QPointF &p1, QPointF &p2)
 {
     double eps=1.0e-10;
 
@@ -36,7 +36,7 @@ int Algorithms::getPointLinePosition(QPoint &a, QPoint &p1, QPoint &p2)
     else return -1;
 }
 
-double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
+double Algorithms::get2LinesAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4)
 {
     //Comupute angle formed by two lines
 
@@ -60,7 +60,7 @@ double Algorithms::get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4
 
 }
 
-int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
+int Algorithms::getPositionWinding(QPointF &q, std::vector<QPointF> &pol)
 {
     //Analyze position of point and polygon
     int n=pol.size();
@@ -92,7 +92,7 @@ int Algorithms::getPositionWinding(QPoint &q, std::vector<QPoint>&pol)
     else
         {return 0;}
 }
-int Algorithms::getPositionRayCrossing(QPoint &q, std::vector<QPoint> &pol)
+int Algorithms::getPositionRayCrossing(QPointF &q, std::vector<QPointF> &pol)
 {
     int eps=1.0e-10;
     //Analyze position of point and polygon

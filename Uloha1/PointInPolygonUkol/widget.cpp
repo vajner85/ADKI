@@ -33,22 +33,39 @@ void Widget::on_pushButton_clicked()
 void Widget::on_pushButtonAnalyze_clicked()
 {
     //Analyze point & polygon position
-    QPoint q=ui->Canvas->getPoint();
-    std::vector<QPoint> pol=ui->Canvas->getPolygon();
+    QPointF q=ui->Canvas->getPoint();
+    std::vector<QPolygonF> pol=ui->Canvas->getPolygon();
     Algorithms a;
-    int pos =0;
-    if (ui->methodcomboBox->currentIndex()==0)
-        {pos=a.getPositionWinding(q,pol);}
-    //if (ui->methodcomboBox->currentIndex()==1)
-    //    {pos=a.getPositionRayCrossing(q,pol);}
+    int pos =-3;
+    std::vector<QPointF> poly;
 
-    //draw results
-    if(pos==1)
-        ui->label->setText("Inside");
-    else if(pos==0)
-        ui->label->setText("Outside");
-    else
-        ui->label->setText("Border");
+    for (int i=0; i<pol.size(); i++)
+    {
+        QPolygonF polygon = pol[i];
+
+        for (int  j= 0; j< polygon.size(); j++)
+             {
+
+
+            poly.push_back(polygon[j]);
+
+             }
+
+        if (ui->methodcomboBox->currentIndex()==0)
+            {pos=a.getPositionWinding(q,poly);}
+        if (ui->methodcomboBox->currentIndex()==1)
+            {pos=a.getPositionRayCrossing(q,poly);}
+
+        //draw results
+        if(pos==1)
+            ui->label->setText("Inside");
+        else if(pos==0)
+            ui->label->setText("Outside");
+        else if (pos==0)
+            ui->label->setText("Border");
+        else
+            ui->label->setText("No data");
+    }
 }
 
 

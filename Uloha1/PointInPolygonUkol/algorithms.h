@@ -7,10 +7,10 @@ class Algorithms
 {
 public:
     Algorithms();
-    int getPointLinePosition(QPoint &a, QPoint &p1, QPoint &p2);
-    double get2LinesAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4);
-    int getPositionWinding(QPoint &q, std::vector<QPoint>&pol);
-    int getPositionRayCrossing(QPoint &q, std::vector<QPoint>&pol);
+    int getPointLinePosition(QPointF &a, QPointF &p1, QPointF &p2);
+    double get2LinesAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4);
+    int getPositionWinding(QPointF &q, std::vector<QPointF> &pol);
+    int getPositionRayCrossing(QPointF &q, std::vector<QPointF>&pol);
 
 };
 
