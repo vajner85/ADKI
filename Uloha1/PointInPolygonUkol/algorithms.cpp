@@ -20,6 +20,10 @@ int Algorithms::getPointLinePosition(QPointF &a, QPointF &p1, QPointF &p2)
     //Halfplate test
     double t=ux*vy-vx*uy;
 
+    //Singulairty test -- point a identical to p1/p2
+    if ( ((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())) )
+    {return -1;}
+
     //Point in the left half plane
     if (t>eps)
     {

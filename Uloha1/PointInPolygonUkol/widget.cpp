@@ -61,7 +61,7 @@ void Widget::on_pushButtonAnalyze_clicked()
             ui->label->setText("Inside");
         else if(pos==0)
             ui->label->setText("Outside");
-        else if (pos==0)
+        else if (pos==-1)
             ui->label->setText("Border");
         else
             ui->label->setText("No data");

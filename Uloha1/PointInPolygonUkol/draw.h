@@ -17,7 +17,6 @@ private:
 
     double x,y;
     std::vector<QPolygonF> pol;
-    std::vector<int> result;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
