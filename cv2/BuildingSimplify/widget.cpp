@@ -2,7 +2,6 @@
 #include "ui_widget.h"
 #include "algorithms.h"
 
-
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -16,21 +15,24 @@ Widget::~Widget()
 }
 
 
-
-
 void Widget::on_pushButton_2_clicked()
 {
-    ui->canvas->clear();
+    ui->Canvas->clear();
 }
-
 
 void Widget::on_pushButton_clicked()
 {
-    std::vector<QPoint> points = ui->canvas->getPoints();
+    //Get points
+    std::vector<QPoint> points = ui->Canvas->getPoints();
+
+    //Create convex hull
     Algorithms a;
-    QPolygon ch=a.cHull(points);
-    ui->canvas->setCh(ch);
+    QPolygon ch = a.cHull(points);
+
+    //Update convex hull
+    ui->Canvas->setCh(ch);
+
+    //Repaint
     repaint();
 
 }
-
