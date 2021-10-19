@@ -1,7 +1,7 @@
 #include "algorithms.h"
 #include <cmath>
 #include "sortbyy.h"
-
+#include "sortbyx.h"
 
 Algorithms::Algorithms()
 {
@@ -99,10 +99,69 @@ std::tuple<std::vector<QPoint>, double> Algorithms::minMaxBox(std::vector<QPoint
     //Return vertices of minmaxbox and its area
     double area=0;
 
+    //Return min,max vertices
+    QPoint px_min=*std::min_element(points.begin(),points.end(), sortByX());
+    QPoint px_max=*std::max_element(points.begin(),points.end(), sortByX());
 
+    QPoint py_min=*std::min_element(points.begin(),points.end(), sortByY());
+    QPoint py_max=*std::max_element(points.begin(),points.end(), sortByY());
 
+    //Create minmaxbox vertices
+    QPoint v1(px_min.x(),py_min.y());
+    QPoint v2(px_max.x(),py_min.y());
+    QPoint v3(px_max.x(),py_max.y());
+    QPoint v4(px_min.x(),py_max.y());
 
+    //Create minmaxbox polygon
+    std::vector<QPoint> mmb{v1,v2,v3,v4};
 
+    //Calculate area minmaxbox
+    area=(px_max.x()-px_min.x())*(py_max.y()-py_min.y());
 
+    return {mmb, area};
+}
 
+QPolygon Algorithms::minAreaEnclosingRectangle(std::vector<QPoint> &points)
+{
+    //Creating min area enclosing rectangle
+    QPolygon ch=cHull(points);
+
+    //Searching for minmaxbox with min area
+    int n = ch.size();
+    double sigma_min=0;
+    std::vector<QPoint> mmb_min;
+
+    //Initializing min area
+    auto[mmb, area_min]=minMaxBox(points);
+
+    for (int i=0; i<n; i++)
+    {
+        //Calc coord diff
+        double dx=ch[(i+1)%n].x()-ch[i].x();
+        double dy=ch[(i+1)%n].y()-ch[i].y();
+
+        double sigma = atan2(dy,dx);
+
+        //Rotate by -sigma
+        std::vector<QPoint>r_points = rotate(points, -sigma);
+
+        //Create minmaxbox
+        auto[mmb, area]=minMaxBox(r_points);
+
+        //Searching for minimum
+
+        if (area < area_min)
+        {
+           area_min=area;
+           sigma_min=sigma;
+           mmb_min=mmb;
+        }
+    }
+    //Create enclosing rectangle
+    std::vector<QPoint> er = rotate(mmb_min, sigma_min);
+
+    //Convert to qpolygon
+    QPolygon er_pol{er[0],er[1],er[2],er[3]};
+
+    return er_pol;
 }

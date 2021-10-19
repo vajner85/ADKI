@@ -29,6 +29,11 @@ void Draw::paintEvent(QPaintEvent *event)
     qp.setPen(Qt::red);
     qp.drawPolygon(ch);
 
+    //Draw enclosing rectangle
+    qp.setBrush(Qt::NoBrush);
+    qp.setPen(Qt::green);
+    qp.drawPolygon(er);
+
     qp.end();
 }
 

@@ -12,7 +12,7 @@ public:
     QPolygon cHull (std::vector <QPoint> &points);
     std::vector<QPoint> rotate(std::vector<QPoint> &points, double sigma);
     std::tuple<std::vector<QPoint>, double> minMaxBox(std::vector<QPoint> &points);
-
+    QPolygon minAreaEnclosingRectangle(std::vector<QPoint> &points);
 
 
 };

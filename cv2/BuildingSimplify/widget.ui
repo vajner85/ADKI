@@ -33,13 +33,6 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Convex Hull</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Building simplify:</string>
@@ -53,6 +46,13 @@
          <string>Minimum bounding rectangle</string>
         </property>
        </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Building simplify</string>
+       </property>
       </widget>
      </item>
      <item>

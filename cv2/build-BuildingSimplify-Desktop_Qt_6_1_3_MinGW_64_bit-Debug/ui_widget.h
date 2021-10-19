@@ -28,9 +28,9 @@ public:
     QHBoxLayout *horizontalLayout;
     Draw *Canvas;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
     QLabel *label;
     QComboBox *comboBox;
+    QPushButton *pushButton;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
 
@@ -55,11 +55,6 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        pushButton = new QPushButton(Widget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
-        verticalLayout->addWidget(pushButton);
-
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
 
@@ -70,6 +65,11 @@ public:
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
         verticalLayout->addWidget(comboBox);
+
+        pushButton = new QPushButton(Widget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        verticalLayout->addWidget(pushButton);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -92,10 +92,10 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Building simplify", nullptr));
-        pushButton->setText(QCoreApplication::translate("Widget", "Convex Hull", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Building simplify:", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("Widget", "Minimum bounding rectangle", nullptr));
 
+        pushButton->setText(QCoreApplication::translate("Widget", "Building simplify", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
     } // retranslateUi
 
