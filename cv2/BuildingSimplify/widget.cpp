@@ -27,11 +27,12 @@ void Widget::on_pushButton_clicked()
 
     //Create enclosing rectangle
     Algorithms a;
+    QPolygon ch = a.cHull(points);
     QPolygon er = a.minAreaEnclosingRectangle(points);
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);
-
+    ui->Canvas->setCh(ch);
     //Repaint
     repaint();
 
