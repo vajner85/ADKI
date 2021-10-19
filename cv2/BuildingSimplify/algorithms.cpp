@@ -75,3 +75,34 @@ QPolygon Algorithms::cHull (std::vector <QPoint> &points)
 
     return ch;
 }
+
+std::vector<QPoint> Algorithms::rotate(std::vector<QPoint> &points, double sigma)
+{
+    //Rotate dataset by angle
+    std::vector<QPoint> r_points;
+
+    for(int i=0; i<points.size(); i++)
+    {
+        //Rotated coords
+        double x_r=points[i].x()*cos(sigma) - points[i].y()*sin(sigma);
+        double y_r=points[i].x()*sin(sigma) + points[i].y()*cos(sigma);
+
+        //Create point
+        QPoint p(x_r,y_r);
+        r_points.push_back(p);
+    }
+    return r_points;
+}
+
+std::tuple<std::vector<QPoint>, double> Algorithms::minMaxBox(std::vector<QPoint> &points)
+{
+    //Return vertices of minmaxbox and its area
+    double area=0;
+
+
+
+
+
+
+
+}
