@@ -165,3 +165,63 @@ QPolygon Algorithms::minAreaEnclosingRectangle(std::vector<QPoint> &points)
 
     return er_pol;
 }
+
+QPolygon Algorithms::wallAverage(std::vector<QPoint> &points)
+{
+    //Create enclosing rectangle using wall average method
+    double sigma = 0, si_sum =0;
+    QPolygon pol;
+    int n = points.size();
+
+    //Initial direction
+    double dx=points[1].x()-points[0].x();
+    double dy=points[1].y()-points[0].y();
+
+    double sigma_ = atan2(dy,dx);
+
+    //Compute direction of all segments
+    for(int i=0; i<n; i++)
+    {
+        //Compute direction and lenght
+        double dxi=points[(i+1)%n].x()-points[i].x();
+        double dyi=points[(i+1)%n].y()-points[i].y();
+
+        double sigmai = atan2(dyi,dxi);
+
+        double lengthi = sqrt(dyi*dyi + dxi*dxi);
+
+        //Direction diffs
+        double dsigmai=sigmai-sigma_;
+        if (dsigmai<0)
+        {dsigmai +=2*M_PI;}
+
+        //Compute fraction
+        double ki=dsigmai/(M_PI/2);
+
+        //Compute reminder
+        double ri=dsigmai-ki*(M_PI/2);
+
+        //Weighted average variables
+        sigma+=ri*lengthi;
+        si_sum+=lengthi;
+    }
+    //Weighted average
+    sigma = sigma_+(sigma/si_sum);
+
+    //Rotate by -sigma
+    std::vector<QPoint>r_points = rotate(points, -sigma);
+
+    //Create minmaxbox
+    auto[mmb, area]=minMaxBox(r_points);
+
+    //Create bounding rectangle
+    std::vector<QPoint> er = rotate(mmb, sigma);
+
+   //Convert to qpolygon
+   QPolygon er_pol{er[0],er[1],er[2],er[3]};
+
+   return er_pol;
+
+
+
+}

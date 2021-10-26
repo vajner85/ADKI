@@ -46,6 +46,11 @@
          <string>Minimum bounding rectangle</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Wall average</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>

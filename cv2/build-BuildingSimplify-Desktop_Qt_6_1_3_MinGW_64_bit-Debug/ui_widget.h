@@ -62,6 +62,7 @@ public:
 
         comboBox = new QComboBox(Widget);
         comboBox->addItem(QString());
+        comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
 
         verticalLayout->addWidget(comboBox);
@@ -94,6 +95,7 @@ public:
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Building simplify", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Building simplify:", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("Widget", "Minimum bounding rectangle", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("Widget", "Wall average", nullptr));
 
         pushButton->setText(QCoreApplication::translate("Widget", "Building simplify", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
