@@ -29,18 +29,16 @@ void Widget::on_pushButton_clicked()
     Algorithms a;
     QPolygon er;
     if (ui->comboBox->currentIndex()==0)
-    {
-        //Minimum area enclosing rectangle
+        {   er = a.minAreaEnclosingRectangle(points);
         QPolygon ch = a.cHull(points);
-        er = a.minAreaEnclosingRectangle(points);
-        ui->Canvas->setCh(ch);
-    }
+        ui->Canvas->setCh(ch); }
 
-    else
-    {
-        //Wall average
-        er = a.wallAverage(points);
-    }
+     if (ui->comboBox->currentIndex()==1)
+        {er = a.wallAverage(points);}
+
+     if (ui->comboBox->currentIndex()==2)
+        {er = a.longestEdge(points);}
+
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);

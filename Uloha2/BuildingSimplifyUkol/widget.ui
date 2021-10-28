@@ -51,6 +51,11 @@
          <string>Wall Average</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Longest Edge</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
