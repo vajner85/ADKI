@@ -24,21 +24,27 @@ void Widget::on_pushButton_clicked()
 {
     //Get points
     std::vector<QPoint> points = ui->Canvas->getPoints();
-     QPolygon er;
+
     //Create enclosing rectangle
     Algorithms a;
-    QPolygon ch = a.cHull(points);
+    QPolygon er;
     if (ui->comboBox->currentIndex()==0)
-        {er = a.minAreaEnclosingRectangle(points);
+    {
+        //Minimum area enclosing rectangle
+        QPolygon ch = a.cHull(points);
+        er = a.minAreaEnclosingRectangle(points);
         ui->Canvas->setCh(ch);
-        }
-    if (ui->comboBox->currentIndex()==1)
-        {er = a.wallAverage(points);}
+    }
+
+    else
+    {
+        //Wall average
+        er = a.wallAverage(points);
+    }
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);
 
     //Repaint
     repaint();
-
 }

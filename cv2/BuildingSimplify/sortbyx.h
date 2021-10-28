@@ -1,6 +1,5 @@
 #ifndef SORTBYX_H
 #define SORTBYX_H
-
 #include <QtGui>
 
 class sortByX

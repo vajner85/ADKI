@@ -1,6 +1,5 @@
 #ifndef SORTBYY_H
 #define SORTBYY_H
-
 #include <QtGui>
 
 class sortByY
