@@ -40,7 +40,7 @@ void Widget::on_pushButton_clicked()
         {er = a.longestEdge(points);}
 
      if (ui->comboBox->currentIndex()==3)
-        {er = a.longestEdge(points);}
+        {er = a.weightedBisector(points);}
 
 
     //Update enclosing rectangle

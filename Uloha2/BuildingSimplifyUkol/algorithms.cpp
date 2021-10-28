@@ -354,20 +354,17 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
 QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
 {
     //Create enclosing rectangle using weighted bisector
-    double sigma1 = 0;
-    double sigma2=0;
     QPolygon pol;
 
-    double dx=0;
-    double dy=0;
-    double length1 = 0;
-    double length2 = 0;
+    double length = 0;
+    std::vector<double> vzd;
+    std::vector<double> uhel;
 
     //Compute directions for segments
     int n = points.size();
     for (int i = 0; i < n; i++)
     {
-        for (int j=0; i<n; i++)
+        for (int j=i+1; j<n; j++)
         {
             //Compute direction and length
             double dxi = points[i].x() - points[j].x();
@@ -376,18 +373,21 @@ QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
             double lengthi = sqrt(dxi*dxi + dyi*dyi);
 
             //Find longest edge
-            if (lengthi>length1)
+            if (lengthi>length)
             {
-                length2=length1;
-                sigma2=sigma1;
+                length = lengthi;
 
-                length1 = lengthi;
-                sigma1 = sigmai;
+                vzd.push_back(lengthi);
+                uhel.push_back(sigmai);
             }
         }
     }
+    double length1=vzd.end()[-1];
+    double length2=vzd.end()[-2];
+    double sigma1=uhel.end()[-1];
+    double sigma2=uhel.end()[-2];
 
-    double sigma = ((length1*sigma1+length2*sigma2)/(length1+length2));
+    double sigma = (length1*sigma1 + length2*sigma2)/(length1+length2);
     //Rotate by -sigma
     std::vector<QPoint> r_points = rotate(points, -sigma);
 
