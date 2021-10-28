@@ -39,6 +39,9 @@ void Widget::on_pushButton_clicked()
      if (ui->comboBox->currentIndex()==2)
         {er = a.longestEdge(points);}
 
+     if (ui->comboBox->currentIndex()==3)
+        {er = a.longestEdge(points);}
+
 
     //Update enclosing rectangle
     ui->Canvas->setEr(er);

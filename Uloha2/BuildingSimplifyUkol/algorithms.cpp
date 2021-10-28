@@ -300,7 +300,7 @@ std::vector <QPoint> Algorithms::resizeRectangle(std::vector <QPoint> &points, s
 
 QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
 {
-    //Create enclosing rectangle using wall average method
+    //Create enclosing rectangle using longest edge
     double sigma = 0;
     QPolygon pol;
 
@@ -318,6 +318,7 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
         double sigmai = atan2(dyi, dxi);
         double lengthi = sqrt(dxi*dxi + dyi*dyi);
 
+        //Find longest edge
         if (lengthi>length)
         {
             length = lengthi;
@@ -347,3 +348,65 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
 
     return er_pol;
 }
+
+
+
+QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
+{
+    //Create enclosing rectangle using weighted bisector
+    double sigma1 = 0;
+    double sigma2=0;
+    QPolygon pol;
+
+    double dx=0;
+    double dy=0;
+    double length1 = 0;
+    double length2 = 0;
+
+    //Compute directions for segments
+    int n = points.size();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j=0; i<n; i++)
+        {
+            //Compute direction and length
+            double dxi = points[i].x() - points[j].x();
+            double dyi = points[i].y() - points[j].y();
+            double sigmai = atan2(dyi, dxi);
+            double lengthi = sqrt(dxi*dxi + dyi*dyi);
+
+            //Find longest edge
+            if (lengthi>length1)
+            {
+                length2=length1;
+                sigma2=sigma1;
+
+                length1 = lengthi;
+                sigma1 = sigmai;
+            }
+        }
+    }
+
+    double sigma = ((length1*sigma1+length2*sigma2)/(length1+length2));
+    //Rotate by -sigma
+    std::vector<QPoint> r_points = rotate(points, -sigma);
+
+    //Create min-max box
+    auto [mmb, area] = minMaxBox(r_points);
+
+    //Create enclosing rectangle
+    std::vector<QPoint> er = rotate(mmb, sigma);
+
+    //Resize rectangle, preserve area of the building
+    std::vector<QPoint> err = resizeRectangle(points,er);
+
+    //Create QPolygon
+    QPolygon er_pol;
+    er_pol.append(err[0]);
+    er_pol.append(err[1]);
+    er_pol.append(err[2]);
+    er_pol.append(err[3]);
+
+    return er_pol;
+}
+
