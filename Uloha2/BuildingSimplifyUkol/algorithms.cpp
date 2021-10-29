@@ -387,6 +387,14 @@ QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
     double sigma1=uhel.end()[-1];
     double sigma2=uhel.end()[-2];
 
+    if (sigma1<0)
+    {sigma1=sigma1+M_PI;}
+    if (sigma2<0)
+    {sigma2=sigma2+M_PI;}
+
+    if ((sigma2-sigma1) > (M_PI/2) || (sigma2-sigma1 < (-M_PI/2)) )
+    {sigma2= sigma2-M_PI;}
+
     double sigma = (length1*sigma1 + length2*sigma2)/(length1+length2);
     //Rotate by -sigma
     std::vector<QPoint> r_points = rotate(points, -sigma);
