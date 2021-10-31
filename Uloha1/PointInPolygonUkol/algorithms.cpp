@@ -20,10 +20,6 @@ int Algorithms::getPointLinePosition(QPointF &a, QPointF &p1, QPointF &p2)
     //Halfplate test
     double t=ux*vy-vx*uy;
 
-    //Singulairty test -- point a identical to p1/p2
-    if ( ((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())) )
-    {return -1;}
-
     //Point in the left half plane
     if (t>eps)
     {
@@ -98,27 +94,31 @@ int Algorithms::getPositionWinding(QPointF &q, std::vector<QPointF> &pol)
 }
 int Algorithms::getPositionRayCrossing(QPointF &q, std::vector<QPointF> &pol)
 {
-    int eps=1.0e-10;
     //Analyze position of point and polygon
     int n=pol.size();
+    int eps=1.0e-10;
 
     //Intersection count
     int k=0;    //right
     int k1=0;   //left
 
-
+    //Covering all vertices of a polygon
     for (int i=1; i<n+1;i++)
     {
+        //Computing xc,yc,xcc,ycc
         double xc=pol[i%n].x()-q.x();
         double yc=pol[i%n].y()-q.y();
 
         double xcc=pol[i-1].x()-q.x();
         double ycc=pol[i-1].y()-q.y();
 
+        //Finding intersection
         if ((yc>0) && (ycc<=0) || (ycc>0) && (yc<=0))
         {
+            //Computing intersection
             double xcm=(xc*ycc-xcc*yc)/(yc-ycc);
 
+            //Right/left plane
                 if(xcm>-eps)
                     k = k+1;    //right
                 if (xcm<eps)

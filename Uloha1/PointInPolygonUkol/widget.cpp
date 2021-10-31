@@ -39,6 +39,7 @@ void Widget::on_pushButtonAnalyze_clicked()
     int pos =-3;
     std::vector<QPointF> poly;
 
+    //Imput output conversion to usable type
     for (int i=0; i<pol.size(); i++)
     {
         QPolygonF polygon = pol[i];
@@ -51,6 +52,7 @@ void Widget::on_pushButtonAnalyze_clicked()
 
              }
 
+        //Algorithm selection
         if (ui->methodcomboBox->currentIndex()==0)
             {pos=a.getPositionWinding(q,poly);}
         if (ui->methodcomboBox->currentIndex()==1)
@@ -69,10 +71,8 @@ void Widget::on_pushButtonAnalyze_clicked()
 }
 
 
-
-
 void Widget::on_pushButtonLoadFile_clicked()
-{
+{   //Load function
     QString path(QFileDialog::getOpenFileName
                  (this, tr("Opening of file"),
                   "../",
