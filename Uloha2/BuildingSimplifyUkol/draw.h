@@ -20,6 +20,7 @@ public:
     std::vector<QPoint> getPoints(){return points;}
     void setCh(QPolygon &ch_){ch = ch_;}
     void setEr(QPolygon &er_){er = er_;}
+    void loadFile(std::string &path);
 
 
 signals:

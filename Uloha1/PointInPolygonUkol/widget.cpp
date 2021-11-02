@@ -65,6 +65,8 @@ void Widget::on_pushButtonAnalyze_clicked()
             ui->label->setText("Outside");
         else if (pos==-1)
             ui->label->setText("Border");
+        else if(pos==-2)
+            ui->label->setText("Apex point");
         else
             ui->label->setText("No data");
     }

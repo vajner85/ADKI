@@ -31,6 +31,8 @@ public:
     QLabel *label;
     QComboBox *comboBox;
     QPushButton *pushButton;
+    QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButtonLoadFile;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
 
@@ -74,6 +76,15 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
+        pushButtonLoadFile = new QPushButton(Widget);
+        pushButtonLoadFile->setObjectName(QString::fromUtf8("pushButtonLoadFile"));
+
+        verticalLayout->addWidget(pushButtonLoadFile);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -102,6 +113,7 @@ public:
         comboBox->setItemText(3, QCoreApplication::translate("Widget", "weighted Bisector", nullptr));
 
         pushButton->setText(QCoreApplication::translate("Widget", "Building simplify", nullptr));
+        pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
     } // retranslateUi
 

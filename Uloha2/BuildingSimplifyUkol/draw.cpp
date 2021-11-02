@@ -1,4 +1,8 @@
 #include "draw.h"
+#include <QtGui>
+#include <fstream>
+#include <QWidget>
+#include <fstream>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -12,17 +16,21 @@ void Draw::paintEvent(QPaintEvent *event)
 
     //Draw points
     int r=4;
-    QPolygon pol;
+    std::vector<QPoint> pol;
 
-    for (int i=0; i<points.size(); i++)
-    {
-        qp.drawEllipse(points[i].x()-r,points[i].y()-r,2*r,2*r);
-        pol.append(points[i]);
-    }
+    //Path setter
+    QPainterPath path;
 
     //Draw polygon
-    qp.setBrush(Qt::yellow);
-    qp.drawPolygon(pol);
+        for(int i = 0; i < pol.size(); i++)
+        {
+            QPolygon poly;
+            poly.push_back(pol[i]);
+            //Draw polygon
+            qp.setBrush(Qt::yellow);
+            qp.drawPolygon(poly);
+        }
+
 
     //Draw convex hull
     qp.setBrush(Qt::NoBrush);
@@ -61,3 +69,32 @@ void Draw::clear()
 
     repaint();
 }
+
+void Draw::loadFile(std::string &path)
+{
+    int id,i;
+    double x;
+    double y;
+    std::vector<QPoint> poly;
+    QPoint p;
+
+    //Loading files
+    std::ifstream file(path);
+
+    if (file.is_open())
+       {
+         while (file >> id >> x >> y )
+             {
+                 // pushing back the current polygon
+                 p.setX(x);
+                 p.setY(y);
+                 poly.push_back(p);
+             }
+
+             //Erasing of all the polygons
+             poly.clear();
+
+      //Closing file
+      file.close();
+     }
+ }
