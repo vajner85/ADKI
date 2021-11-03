@@ -11,6 +11,7 @@ class Draw : public QWidget
 private:
     std::vector<QPoint> points;
     QPolygon ch, er;
+    std::vector<QPolygon> pol;
 
 public:
     explicit Draw(QWidget *parent = nullptr);

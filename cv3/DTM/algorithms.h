@@ -1,0 +1,24 @@
+#ifndef ALGORITHMS_H
+#define ALGORITHMS_H
+
+#include <QtGui>
+#include "edge.h"
+#include <vector>
+
+class Algorithms
+{
+public:
+    Algorithms();
+    int getPointLinePosition(QPoint &a, QPoint &p1, QPoint &p2);
+    std::tuple<QPoint,double> getCircleCenterAndRadius(QPoint &p1,QPoint &p2,QPoint &p3);
+    int getDelaunayPoint(QPoint &s, QPoint &e, std::vector<QPoint> &points);
+    int getNearestPoint(QPoint &p,std::vector<QPoint> &points);
+    std::vector<Edge> dT(std::vector<QPoint> &points);
+
+
+
+
+
+};
+
+#endif // ALGORITHMS_H

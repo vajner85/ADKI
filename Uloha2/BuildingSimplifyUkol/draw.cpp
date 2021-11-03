@@ -3,6 +3,7 @@
 #include <fstream>
 #include <QWidget>
 #include <fstream>
+#include <iostream>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -14,9 +15,6 @@ void Draw::paintEvent(QPaintEvent *event)
     QPainter qp(this);
     qp.begin(this);
 
-    //Draw points
-    int r=4;
-    std::vector<QPoint> pol;
 
     //Path setter
     QPainterPath path;
@@ -25,7 +23,7 @@ void Draw::paintEvent(QPaintEvent *event)
         for(int i = 0; i < pol.size(); i++)
         {
             QPolygon poly;
-            poly.push_back(pol[i]);
+            poly.append(pol[i]);
             //Draw polygon
             qp.setBrush(Qt::yellow);
             qp.drawPolygon(poly);
@@ -73,28 +71,47 @@ void Draw::clear()
 void Draw::loadFile(std::string &path)
 {
     int id,i;
+    double fid;
     double x;
     double y;
-    std::vector<QPoint> poly;
+    QPolygon poly;
     QPoint p;
+    int fid_min=0;
 
     //Loading files
     std::ifstream file(path);
 
-    if (file.is_open())
-       {
-         while (file >> id >> x >> y )
-             {
-                 // pushing back the current polygon
-                 p.setX(x);
-                 p.setY(y);
-                 poly.push_back(p);
-             }
+   if (file.is_open())
+      {
+        while (file >> x >> y >> id >> fid)
+        {
 
-             //Erasing of all the polygons
-             poly.clear();
+            if (fid == fid_min)
+            {
+                // pushing back the current polygon
+                p.setX(x);
+                p.setY(y);
+                poly.push_back(p);
+            }
+            else
+            {
+                // creating new polygon
+                pol.push_back(poly);
+                poly.clear();
+                // adding of a new point to the new polygon
+                p.setX(x);
+                p.setY(y);
+                poly.push_back(p);
+                fid_min = fid;
+            }
+        }
+            //Saving
+            pol.push_back(poly);
 
-      //Closing file
-      file.close();
-     }
- }
+            //Erasing of all the polygons
+            poly.clear();
+
+     //Closing file
+     file.close();
+    }
+}
