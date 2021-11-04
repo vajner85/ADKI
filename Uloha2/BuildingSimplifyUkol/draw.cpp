@@ -33,12 +33,18 @@ void Draw::paintEvent(QPaintEvent *event)
     //Draw convex hull
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::red);
-    qp.drawPolygon(ch);
+    //qp.drawPolygon(ch_v);
+    if (ch_v.size() > 0)
+            for (QPolygon chull : ch_v)
+                qp.drawPolygon(chull);
 
     //Draw enclosing rectangle
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::green);
-    qp.drawPolygon(er);
+    //qp.drawPolygon(er);
+    if (er_v.size() > 0)
+            for (QPolygon enrect : er_v)
+                qp.drawPolygon(enrect);
 
     qp.end();
 }
@@ -62,8 +68,11 @@ void Draw::mousePressEvent(QMouseEvent *event)
 void Draw::clear()
 {
     points.clear();
+    pol.clear();
     ch.clear();
     er.clear();
+    er_v.clear();
+    ch_v.clear();
 
     repaint();
 }
@@ -89,8 +98,8 @@ void Draw::loadFile(std::string &path)
             if (fid == fid_min)
             {
                 // pushing back the current polygon
-                p.setX(x);
-                p.setY(y);
+                p.setX((-x-740000)/3);
+                p.setY((-y-1043000)/3);
                 poly.push_back(p);
             }
             else
@@ -99,8 +108,8 @@ void Draw::loadFile(std::string &path)
                 pol.push_back(poly);
                 poly.clear();
                 // adding of a new point to the new polygon
-                p.setX(x);
-                p.setY(y);
+                p.setX((-x-740000)/3);
+                p.setY((-y-1043000)/3);
                 poly.push_back(p);
                 fid_min = fid;
             }

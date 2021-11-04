@@ -11,6 +11,7 @@ class Draw : public QWidget
 private:
     std::vector<QPoint> points;
     QPolygon ch, er;
+    std::vector<QPolygon> ch_v, er_v;
     std::vector<QPolygon> pol;
 
 public:
@@ -23,6 +24,9 @@ public:
     void setEr(QPolygon &er_){er = er_;}
     void loadFile(std::string &path);
 
+    std::vector<QPolygon> getPolygon(){return pol;};
+    void addCh(QPolygon &ch_){ch_v.push_back(ch_);}
+    void addEr(QPolygon &er_){er_v.push_back(er_);}
 
 signals:
 
