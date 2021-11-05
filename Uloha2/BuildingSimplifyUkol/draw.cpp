@@ -85,7 +85,7 @@ void Draw::loadFile(std::string &path)
     double y;
     QPolygon poly;
     QPoint p;
-    int fid_min=0;
+    int fid_min=-1;
 
     //Loading files
     std::ifstream file(path);
@@ -98,8 +98,10 @@ void Draw::loadFile(std::string &path)
             if (fid == fid_min)
             {
                 // pushing back the current polygon
-                p.setX((-x-740000)/3);
-                p.setY((-y-1043000)/3);
+                //p.setX((-x-740000)/3);
+                //p.setY((-y-1043000)/3);
+                p.setX(x);
+                p.setY(y);
                 poly.push_back(p);
             }
             else
@@ -108,8 +110,10 @@ void Draw::loadFile(std::string &path)
                 pol.push_back(poly);
                 poly.clear();
                 // adding of a new point to the new polygon
-                p.setX((-x-740000)/3);
-                p.setY((-y-1043000)/3);
+                //p.setX((-x-740000)/3);
+                //p.setY((-y-1043000)/3);
+                p.setX(x);
+                p.setY(y);
                 poly.push_back(p);
                 fid_min = fid;
             }

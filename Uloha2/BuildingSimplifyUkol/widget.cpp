@@ -27,26 +27,32 @@ void Widget::on_pushButton_clicked()
     //std::vector<QPoint> points = ui->Canvas->getPoints();
     std::vector<QPolygon> pol=ui->Canvas->getPolygon();
 
+    std::vector<QPoint> point;
     std::vector<QPoint> points;
     //Create enclosing rectangle
     Algorithms a;
     QPolygon er;
     std::vector<QPolygon> ch_v, er_v;
+    QPolygon polygon;
 
-    for (int i=0; i<pol.size(); i++)
+    for (unsigned int i=0; i<pol.size(); i++)
         {
-            QPolygon polygon = pol[i];
+            polygon.clear();
+            polygon.append(pol[i]);
+            points.clear();
 
-            for (int  j= 0; j< polygon.size(); j++)
-                 {
-                points.push_back(polygon[j]);
+            for (unsigned int  j= 0; j< polygon.size(); j++)
+                     {
+                    points.push_back(polygon[j]);
+                    }
 
-
-
+        if (points.size() > 2)
+        {
     if (ui->comboBox->currentIndex()==0)
         {   er = a.minAreaEnclosingRectangle(points);
         QPolygon ch = a.cHull(points);
-        ui->Canvas->addCh(ch);}
+        ui->Canvas->addCh(ch);
+        }
 
      if (ui->comboBox->currentIndex()==1)
         {er = a.wallAverage(points);}
@@ -65,6 +71,7 @@ void Widget::on_pushButton_clicked()
     repaint();
         }
     }
+
 }
 
 void Widget::on_pushButtonLoadFile_clicked()
