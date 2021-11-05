@@ -43,7 +43,7 @@
       <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
-         <string>Minimum Bounding Rectangle</string>
+         <string>Minimum Area Enclosing Rectangle</string>
         </property>
        </item>
        <item>
@@ -58,7 +58,7 @@
        </item>
        <item>
         <property name="text">
-         <string>weighted Bisector</string>
+         <string>Weighted Bisector</string>
         </property>
        </item>
       </widget>

@@ -107,10 +107,10 @@ public:
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Building simplify", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Building simplify:", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("Widget", "Minimum Bounding Rectangle", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("Widget", "Minimum Area Enclosing Rectangle", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("Widget", "Wall Average", nullptr));
         comboBox->setItemText(2, QCoreApplication::translate("Widget", "Longest Edge", nullptr));
-        comboBox->setItemText(3, QCoreApplication::translate("Widget", "weighted Bisector", nullptr));
+        comboBox->setItemText(3, QCoreApplication::translate("Widget", "Weighted Bisector", nullptr));
 
         pushButton->setText(QCoreApplication::translate("Widget", "Building simplify", nullptr));
         pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load", nullptr));

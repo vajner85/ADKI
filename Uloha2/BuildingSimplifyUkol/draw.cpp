@@ -49,21 +49,8 @@ void Draw::paintEvent(QPaintEvent *event)
     qp.end();
 }
 
-void Draw::mousePressEvent(QMouseEvent *event)
-{
-    //Get coordinates
-    int x = event->pos().x();
-    int y = event->pos().y();
-
-    //Create point
-    QPoint p(x,y);
-
-    //Add point to the vector
-    points.push_back(p);
-
-    //Update screen
-    repaint();
-}
+//void Draw::mousePressEvent(QMouseEvent *event)
+//{}
 
 void Draw::clear()
 {
