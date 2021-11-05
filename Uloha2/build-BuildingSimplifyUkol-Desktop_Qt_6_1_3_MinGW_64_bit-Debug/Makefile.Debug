@@ -2782,7 +2782,10 @@ debug/widget.o: ../BuildingSimplifyUkol/widget.cpp ../BuildingSimplifyUkol/widge
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qundogroup.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qundostack.h \
 		C:/Qt/6.1.3/mingw81_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtguiversion.h
+		C:/Qt/6.1.3/mingw81_64/include/QtGui/qtguiversion.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/6.1.3/mingw81_64/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\widget.o ..\BuildingSimplifyUkol\widget.cpp
 
 debug/moc_draw.o: debug/moc_draw.cpp 
