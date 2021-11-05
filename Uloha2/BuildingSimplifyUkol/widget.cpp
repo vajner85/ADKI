@@ -39,11 +39,8 @@ void Widget::on_pushButton_clicked()
 
             for (int  j= 0; j< polygon.size(); j++)
                  {
-
-
                 points.push_back(polygon[j]);
 
-                 }
 
 
     if (ui->comboBox->currentIndex()==0)
@@ -66,9 +63,9 @@ void Widget::on_pushButton_clicked()
 
     //Repaint
     repaint();
+        }
     }
 }
-
 
 void Widget::on_pushButtonLoadFile_clicked()
 {   //Load function
