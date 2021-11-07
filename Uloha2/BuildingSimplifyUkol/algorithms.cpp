@@ -308,7 +308,7 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
     int n = points.size();
     for (int i = 0; i < n; i++)
     {
-        //Compute direction and length
+        //Compute direction,length and orientation
         double dxi = points[(i+1)%n].x() - points[i].x();
         double dyi = points[(i+1)%n].y() - points[i].y();
         double sigmai = atan2(dyi, dxi);
@@ -317,11 +317,11 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
         //Find longest edge
         if (lengthi>length)
         {
+            //Selecting the longest edge and main orientation
             length = lengthi;
             sigma = sigmai;
         }
     }
-
 
     //Rotate by -sigma
     std::vector<QPoint> r_points = rotate(points, -sigma);
@@ -362,7 +362,7 @@ QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
     {
         for (int j=i+1; j<n; j++)
         {
-            //Compute direction and length
+            //Compute direction,length and orientation
             double dxi = points[i].x() - points[j].x();
             double dyi = points[i].y() - points[j].y();
             double sigmai = atan2(dyi, dxi);
@@ -371,27 +371,35 @@ QPolygon Algorithms::weightedBisector(std::vector <QPoint> &points)
             //Find longest edge
             if (lengthi>length)
             {
+                //Replacing longest edge with current one
                 length = lengthi;
 
+                //Adding length and orientation to vectors
                 vzd.push_back(lengthi);
                 uhel.push_back(sigmai);
             }
         }
     }
+
+    //Selecting two longest edges along with theire orientations
     double length1=vzd.end()[-1];
     double length2=vzd.end()[-2];
     double sigma1=uhel.end()[-1];
     double sigma2=uhel.end()[-2];
 
+    //Updating orientations
     if (sigma1<0)
     {sigma1=sigma1+M_PI;}
     if (sigma2<0)
     {sigma2=sigma2+M_PI;}
 
+    //Updating orientation so that main orientation of object is properly selected
     if ((sigma2-sigma1) > (M_PI/2) || (sigma2-sigma1 < (-M_PI/2)) )
     {sigma2= sigma2-M_PI;}
 
+    //Computing weighted average of orientation
     double sigma = (length1*sigma1 + length2*sigma2)/(length1+length2);
+
     //Rotate by -sigma
     std::vector<QPoint> r_points = rotate(points, -sigma);
 

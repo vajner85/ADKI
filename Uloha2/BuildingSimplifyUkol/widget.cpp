@@ -42,6 +42,7 @@ void Widget::on_pushButton_clicked()
 
         if (points.size() > 2)
         {
+            //Method-area enclosing rectangle
             if (ui->comboBox->currentIndex()==0)
             {
                 er = a.minAreaEnclosingRectangle(points);
@@ -49,12 +50,15 @@ void Widget::on_pushButton_clicked()
                 ui->Canvas->addCh(ch);
             }
 
+            //Method-wall average
             else if (ui->comboBox->currentIndex()==1)
                 er = a.wallAverage(points);
 
+            //Method-longest edge
             else if (ui->comboBox->currentIndex()==2)
                er = a.longestEdge(points);
 
+            //Method-weighted bisector
             else if (ui->comboBox->currentIndex()==3)
                er = a.weightedBisector(points);
         }

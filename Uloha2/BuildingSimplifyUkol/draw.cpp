@@ -33,7 +33,6 @@ void Draw::paintEvent(QPaintEvent *event)
     //Draw convex hull
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::red);
-    //qp.drawPolygon(ch_v);
     if (ch_v.size() > 0)
             for (QPolygon chull : ch_v)
                 qp.drawPolygon(chull);
@@ -41,10 +40,9 @@ void Draw::paintEvent(QPaintEvent *event)
     //Draw enclosing rectangle
     qp.setBrush(Qt::NoBrush);
     qp.setPen(Qt::green);
-    //qp.drawPolygon(er);
     if (er_v.size() > 0)
-            for (QPolygon enrect : er_v)
-                qp.drawPolygon(enrect);
+            for (QPolygon enr : er_v)
+                qp.drawPolygon(enr);
 
     qp.end();
 }
@@ -102,7 +100,7 @@ void Draw::loadFile(std::string &path)
                 //Add new point
                 pol.push_back(QPoint(x, y));
             }
-
+            //Selecting new polygon number as current
             fid_min = fid;
         }
 
