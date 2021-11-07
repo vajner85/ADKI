@@ -134,10 +134,9 @@ QPolygon Algorithms::minAreaEnclosingRectangle(std::vector <QPoint> &points)
     //Searching for min max box with min area
     int n = ch.size();
     double sigma_min=0;
-    std::vector<QPoint> mmb_min;
 
     //Initializing area_min
-    auto [mmb, area_min] = minMaxBox(points);
+    auto [mmb_min, area_min] = minMaxBox(points);
 
     for (int i=0; i<n; i++)
     {
@@ -303,9 +302,6 @@ QPolygon Algorithms::longestEdge(std::vector <QPoint> &points)
     //Create enclosing rectangle using longest edge
     double sigma = 0;
     QPolygon pol;
-
-    double dx=0;
-    double dy=0;
     double length = 0;
 
     //Compute directions for segments

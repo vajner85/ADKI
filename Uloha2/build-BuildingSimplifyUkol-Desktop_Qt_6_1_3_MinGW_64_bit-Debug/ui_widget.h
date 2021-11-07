@@ -28,11 +28,13 @@ public:
     QHBoxLayout *horizontalLayout;
     Draw *Canvas;
     QVBoxLayout *verticalLayout;
+    QLabel *label_2;
+    QPushButton *pushButtonLoadFile;
+    QSpacerItem *verticalSpacer_3;
     QLabel *label;
     QComboBox *comboBox;
-    QPushButton *pushButton;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *pushButtonLoadFile;
+    QPushButton *pushButton;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
 
@@ -57,6 +59,20 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        label_2 = new QLabel(Widget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        verticalLayout->addWidget(label_2);
+
+        pushButtonLoadFile = new QPushButton(Widget);
+        pushButtonLoadFile->setObjectName(QString::fromUtf8("pushButtonLoadFile"));
+
+        verticalLayout->addWidget(pushButtonLoadFile);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_3);
+
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
 
@@ -71,19 +87,14 @@ public:
 
         verticalLayout->addWidget(comboBox);
 
+        verticalSpacer_2 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         verticalLayout->addWidget(pushButton);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_2);
-
-        pushButtonLoadFile = new QPushButton(Widget);
-        pushButtonLoadFile->setObjectName(QString::fromUtf8("pushButtonLoadFile"));
-
-        verticalLayout->addWidget(pushButtonLoadFile);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -106,6 +117,8 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Building simplify", nullptr));
+        label_2->setText(QCoreApplication::translate("Widget", "Load data from ASCII(.txt):", nullptr));
+        pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Building simplify:", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("Widget", "Minimum Area Enclosing Rectangle", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("Widget", "Wall Average", nullptr));
@@ -113,7 +126,6 @@ public:
         comboBox->setItemText(3, QCoreApplication::translate("Widget", "Weighted Bisector", nullptr));
 
         pushButton->setText(QCoreApplication::translate("Widget", "Building simplify", nullptr));
-        pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
     } // retranslateUi
 

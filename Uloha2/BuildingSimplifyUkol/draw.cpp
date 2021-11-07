@@ -15,19 +15,19 @@ void Draw::paintEvent(QPaintEvent *event)
     QPainter qp(this);
     qp.begin(this);
 
-
     //Path setter
     QPainterPath path;
 
     //Draw polygon
-        for(int i = 0; i < pol.size(); i++)
-        {
-            QPolygon poly;
-            poly.append(pol[i]);
-            //Draw polygon
-            qp.setBrush(Qt::yellow);
-            qp.drawPolygon(poly);
-        }
+    for(int i = 0; i < pols.size(); i++)
+    {
+        QPolygon poly;
+        poly.append(pols[i]);
+
+        //Draw polygon
+        qp.setBrush(Qt::yellow);
+        qp.drawPolygon(poly);
+    }
 
 
     //Draw convex hull
@@ -55,7 +55,7 @@ void Draw::paintEvent(QPaintEvent *event)
 void Draw::clear()
 {
     points.clear();
-    pol.clear();
+    pols.clear();
     ch.clear();
     er.clear();
     er_v.clear();
@@ -66,52 +66,50 @@ void Draw::clear()
 
 void Draw::loadFile(std::string &path)
 {
-    int id,i;
-    double fid;
-    double x;
-    double y;
-    QPolygon poly;
-    QPoint p;
-    int fid_min=-1;
+    int id, fid = -1, fid_min = fid;
+    double x, y;
+    QPolygon pol;
+
 
     //Loading files
     std::ifstream file(path);
 
-   if (file.is_open())
-      {
+    if (file.is_open())
+    {
+        //Read line
         while (file >> x >> y >> id >> fid)
         {
+            //Moving points to canvas viewed window
+            //x=(-x-740000)/3;
+            //y=(-y-1043000)/3;
 
-            if (fid == fid_min)
+            //Same ID, intermediate point
+            if (fid == fid_min || fid_min == -1)
             {
-                // pushing back the current polygon
-                //p.setX((-x-740000)/3);
-                //p.setY((-y-1043000)/3);
-                p.setX(x);
-                p.setY(y);
-                poly.push_back(p);
+                //Add point to the list
+                pol.push_back(QPoint(x,y));
             }
+
+            //ID has changed
             else
             {
-                // creating new polygon
-                pol.push_back(poly);
-                poly.clear();
-                // adding of a new point to the new polygon
-                //p.setX((-x-740000)/3);
-                //p.setY((-y-1043000)/3);
-                p.setX(x);
-                p.setY(y);
-                poly.push_back(p);
-                fid_min = fid;
+                //Add old polygon to the list
+                pols.push_back(pol);
+
+                //Clear the polygon
+                pol.clear();
+
+                //Add new point
+                pol.push_back(QPoint(x, y));
             }
+
+            fid_min = fid;
         }
-            //Saving
-            pol.push_back(poly);
 
-            //Erasing of all the polygons
-            poly.clear();
+        //Add last polygon to the list
+        pols.push_back(pol);
 
-     //Closing file
-     file.close();
+        //Closing file
+        file.close();
     }
 }

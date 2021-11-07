@@ -23,56 +23,50 @@ void Widget::on_pushButton_2_clicked()
 
 void Widget::on_pushButton_clicked()
 {
-    //Get points
-    //std::vector<QPoint> points = ui->Canvas->getPoints();
-    std::vector<QPolygon> pol=ui->Canvas->getPolygon();
+    //Get polygons
+    std::vector<QPolygon> pols=ui->Canvas->getPolygons();
 
-    std::vector<QPoint> point;
-    std::vector<QPoint> points;
     //Create enclosing rectangle
     Algorithms a;
     QPolygon er;
     std::vector<QPolygon> ch_v, er_v;
     QPolygon polygon;
 
-    for (unsigned int i=0; i<pol.size(); i++)
-        {
-            polygon.clear();
-            polygon.append(pol[i]);
-            points.clear();
-
-            for (unsigned int  j= 0; j< polygon.size(); j++)
-                     {
-                    points.push_back(polygon[j]);
-                    }
+    //Process polygons one by one
+    for (unsigned int i=0; i<pols.size(); i++)
+    {
+        //Convert polygon to vector of points
+        std::vector<QPoint> points;
+        for (QPoint p : pols[i])
+            points.push_back(p);
 
         if (points.size() > 2)
         {
-    if (ui->comboBox->currentIndex()==0)
-        {   er = a.minAreaEnclosingRectangle(points);
-        QPolygon ch = a.cHull(points);
-        ui->Canvas->addCh(ch);
+            if (ui->comboBox->currentIndex()==0)
+            {
+                er = a.minAreaEnclosingRectangle(points);
+                QPolygon ch = a.cHull(points);
+                ui->Canvas->addCh(ch);
+            }
+
+            else if (ui->comboBox->currentIndex()==1)
+                er = a.wallAverage(points);
+
+            else if (ui->comboBox->currentIndex()==2)
+               er = a.longestEdge(points);
+
+            else if (ui->comboBox->currentIndex()==3)
+               er = a.weightedBisector(points);
         }
 
-     if (ui->comboBox->currentIndex()==1)
-        {er = a.wallAverage(points);}
+        //Update enclosing rectangle
+        ui->Canvas->addEr(er);
 
-     if (ui->comboBox->currentIndex()==2)
-        {er = a.longestEdge(points);}
-
-     if (ui->comboBox->currentIndex()==3)
-        {er = a.weightedBisector(points);}
-
-
-    //Update enclosing rectangle
-    ui->Canvas->addEr(er);
-
-    //Repaint
-    repaint();
-        }
+        //Repaint
+        repaint();
     }
-
 }
+
 
 void Widget::on_pushButtonLoadFile_clicked()
 {   //Load function
