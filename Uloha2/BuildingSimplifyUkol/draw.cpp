@@ -80,8 +80,8 @@ void Draw::loadFile(std::string &path)
         while (file >> x >> y >> id >> fid)
         {
             //Moving points to canvas viewed window
-            //x=(-x-740000)/3;
-            //y=(-y-1043000)/3;
+            x=(-x-740000)/3;
+            y=(-y-1043000)/3;
 
             //Same ID, intermediate point
             if (fid == fid_min || fid_min == -1)
