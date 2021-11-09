@@ -20,6 +20,17 @@ void Draw::paintEvent(QPaintEvent *event)
         pol.append(points[i]);
     }
 
+    for(Edge e : dt)
+    {
+        //Get start and end points
+        QPoint s_point = e.getStart();
+        QPoint e_point = e.getEnd();
+
+        //Draw edge
+        qp.drawLine(s_point, e_point);
+    }
+
+
     qp.end();
 }
 

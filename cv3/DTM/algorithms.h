@@ -14,6 +14,7 @@ public:
     int getDelaunayPoint(QPoint &s, QPoint &e, std::vector<QPoint> &points);
     int getNearestPoint(QPoint &p,std::vector<QPoint> &points);
     std::vector<Edge> dT(std::vector<QPoint> &points);
+    void updateAEL(Edge &e, std::list<Edge> &ael);
 
 
 

@@ -26,6 +26,9 @@ void Draw::paintEvent(QPaintEvent *event)
             QPolygonF poly = pol[i];
             painter.drawPolygon(poly);
         }
+
+
+    //painter.setBrush(Qt::blue);
     //Draw point
     painter.drawEllipse(q.x()-4,q.y()-4,8,8);
 

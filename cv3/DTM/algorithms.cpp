@@ -129,7 +129,7 @@ std::vector<Edge> Algorithms::dT(std::vector<QPoint> &points)
 {
     //Creating Delaunay triangulation using incremental method
     std::vector<Edge> dt;
-    std::list<Edge> ale;
+    std::list<Edge> ael;
 
     //Finding min x point ->pivot
     QPoint q= *min_element(points.begin(), points.end(),sortByX());
@@ -137,5 +137,96 @@ std::vector<Edge> Algorithms::dT(std::vector<QPoint> &points)
     //Point nearest to pivot q
     int i_nearest = getNearestPoint(q,points);
     QPoint qn= points[i_nearest];
+
+    //Create new edge
+    Edge e(q,qn);
+
+    //Find otimal Delaunay point
+    int i_point = getDelaunayPoint(q,qn,points);
+
+    //Point not found
+    if(i_point == -1)
+    {
+        //Change orientation
+        e.changeOrientation();
+
+        //Search for optimal Delaunay point
+        i_point = getDelaunayPoint(q,qn,points);
+    }
+
+    //Set 3rd vertex (Delaunay point)
+    QPoint v3 = points[i_point];
+
+    //Creating edges
+    QPoint es=e.getStart();
+    QPoint ee=e.getEnd();
+    Edge e2(ee,v3);
+    Edge e3(v3, es);
+
+    //Addin to Dt
+    dt.push_back(e);
+    dt.push_back(e2);
+    dt.push_back(e3);
+
+    //Adding to active edges list
+    ael.push_back(e);
+    ael.push_back(e2);
+    ael.push_back(e3);
+
+    //Process edges until empty
+    while(!ael.empty())
+    {
+        //Get last edge
+        e = ael.back();
+        ael.pop_back();
+
+        //Search for optimal Delaunay point
+        QPoint qs=e.getStart();
+        QPoint qe=e.getEnd();
+        i_point = getDelaunayPoint(qs,qe,points);
+
+
+        //Point found
+        if(i_point != -1)
+        {
+            //Set 3rd vertex (Delaunay point)
+            v3 = points[i_point];
+
+            //Creating edges
+            QPoint es=e.getStart();
+            QPoint ee=e.getEnd();
+            Edge e2(ee,v3);
+            Edge e3(v3, es);
+
+            //Adding to dt
+            dt.push_back(e);
+            dt.push_back(e2);
+            dt.push_back(e3);
+
+            updateAEL(e2,ael);
+            updateAEL(e3,ael);
+        }
+    }
+    return dt;
+}
+
+void Algorithms::updateAEL(Edge &e, std::list<Edge> &ael)
+{
+    //Update ael
+    //Switch orientation
+    e.changeOrientation();
+
+    //Look for e2 in ael
+    auto ie = std::find(ael.begin(),ael.end(),e);
+
+    //E2 has not been found
+    if(ie == ael.end())
+    {
+        //Change orientation
+        e.changeOrientation();
+        ael.push_back(e);
+    }
+    else
+    {   ael.erase(ie);}
 
 }
