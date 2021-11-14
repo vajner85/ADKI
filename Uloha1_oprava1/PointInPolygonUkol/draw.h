@@ -17,6 +17,7 @@ private:
 
     double x,y;
     std::vector<QPolygonF> pol;
+    std::vector<QPolygonF> polcol;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -29,6 +30,8 @@ public:
     void loadFile(std::string &path);
     void setX(double x_){x=x_;};
     void setY(double y_){y=y_;};
+
+    void setPolcol(QPolygonF &polcol_){polcol.push_back(polcol_);};
 
 signals:
 

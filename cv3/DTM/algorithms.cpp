@@ -151,7 +151,7 @@ std::vector<Edge> Algorithms::dT(std::vector<QPoint> &points)
         e.changeOrientation();
 
         //Search for optimal Delaunay point
-        i_point = getDelaunayPoint(q,qn,points);
+        i_point = getDelaunayPoint(qn,q,points);
     }
 
     //Set 3rd vertex (Delaunay point)
@@ -228,5 +228,4 @@ void Algorithms::updateAEL(Edge &e, std::list<Edge> &ael)
     }
     else
     {   ael.erase(ie);}
-
 }

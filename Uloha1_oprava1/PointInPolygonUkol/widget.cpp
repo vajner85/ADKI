@@ -60,7 +60,8 @@ void Widget::on_pushButtonAnalyze_clicked()
 
         //draw results
         if(pos==1)
-            ui->label->setText("Inside");
+            {ui->label->setText("Inside");
+             ui->Canvas->setPolcol(pol[i]);}
         else if(pos==0)
             ui->label->setText("Outside");
         else if (pos==-1)
@@ -70,6 +71,7 @@ void Widget::on_pushButtonAnalyze_clicked()
         else
             ui->label->setText("No data");
     }
+    repaint();
 }
 
 

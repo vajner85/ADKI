@@ -27,9 +27,18 @@ void Draw::paintEvent(QPaintEvent *event)
             painter.drawPolygon(poly);
         }
 
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(Qt::yellow);
+    if (polcol.size() > 0)
+        {
+         QPolygonF colpol = polcol[0];
+         painter.drawPolygon(colpol);
+        }
 
     //painter.setBrush(Qt::blue);
     //Draw point
+    painter.setPen(Qt::black);
+    painter.setBrush(Qt::NoBrush);
     painter.drawEllipse(q.x()-4,q.y()-4,8,8);
 
     painter.end();
@@ -56,6 +65,7 @@ void Draw::clear()
 {
     //Clear and repaint
     pol.clear();
+    polcol.clear();
     repaint();
 }
 

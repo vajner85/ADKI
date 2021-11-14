@@ -16,7 +16,7 @@ public:
 
     bool operator == (const Edge &e2)
     {
-        return s==e2.getStart() && e==e2.getEnd();
+        return (s==e2.getStart()) && (e==e2.getEnd());
     }
 
 

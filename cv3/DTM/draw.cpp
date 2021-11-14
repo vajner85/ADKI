@@ -30,7 +30,6 @@ void Draw::paintEvent(QPaintEvent *event)
         qp.drawLine(s_point, e_point);
     }
 
-
     qp.end();
 }
 
