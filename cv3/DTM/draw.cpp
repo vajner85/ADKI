@@ -17,17 +17,18 @@ void Draw::paintEvent(QPaintEvent *event)
     for (int i=0; i<points.size(); i++)
     {
         qp.drawEllipse(points[i].x()-r,points[i].y()-r,2*r,2*r);
-        pol.append(points[i]);
+        pol.append(QPoint(points[i].x(), points[i].y()));
     }
 
+    //Draw triangulation
     for(Edge e : dt)
     {
-        //Get start and end points
-        QPoint s_point = e.getStart();
-        QPoint e_point = e.getEnd();
+        //Get start point, get end point
+        QPoint3D s_point = e.getStart();
+        QPoint3D e_point = e.getEnd();
 
-        //Draw edge
-        qp.drawLine(s_point, e_point);
+        //Draw line
+        qp.drawLine(s_point,e_point);
     }
 
     qp.end();
@@ -40,7 +41,7 @@ void Draw::mousePressEvent(QMouseEvent *event)
     int y = event->pos().y();
 
     //Create point
-    QPoint p(x,y);
+    QPoint3D p(x,y);
 
     //Add point to the vector
     points.push_back(p);
@@ -54,3 +55,10 @@ void Draw::clear()
     points.clear();
     repaint();
 }
+
+void Draw::clearDT()
+{
+    dt.clear();
+    repaint();
+}
+
