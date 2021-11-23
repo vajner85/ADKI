@@ -32,6 +32,8 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_DrawSlope_clicked();
+
 private:
     Ui::Widget *ui;
 };
