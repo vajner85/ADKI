@@ -184,8 +184,8 @@ void Draw::clearDT()
 
 void Draw::loadFile(std::string &path)
 {
-    double x, y,z;
-    QPoint3D p;
+    double x, y, z;
+    std::vector<QPoint3D> pointss;
 
     //Loading files
     std::ifstream file(path);
@@ -201,11 +201,10 @@ void Draw::loadFile(std::string &path)
             //z=z;
 
             //Add point to the list
-            QPoint3D p(x,y,z);
+            pointss.push_back(QPoint3D (x,y,z));
         }
 
-        points.push_back(p);
-
+        points=pointss;
         //Closing file
         file.close();
     }
