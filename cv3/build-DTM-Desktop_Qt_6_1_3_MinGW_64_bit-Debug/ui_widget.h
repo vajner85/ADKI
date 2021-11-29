@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -18,7 +19,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <draw.h>
+#include "draw.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -28,6 +29,8 @@ public:
     QHBoxLayout *horizontalLayout;
     Draw *Canvas;
     QVBoxLayout *verticalLayout;
+    QPushButton *pushButtonLoadFile;
+    QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
     QLabel *label;
@@ -37,6 +40,8 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_3;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_labelsC;
+    QComboBox *comboBoxCol;
     QPushButton *pushButton_DrawSlope;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
@@ -62,6 +67,15 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        pushButtonLoadFile = new QPushButton(Widget);
+        pushButtonLoadFile->setObjectName(QString::fromUtf8("pushButtonLoadFile"));
+
+        verticalLayout->addWidget(pushButtonLoadFile);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_4);
+
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
@@ -106,6 +120,18 @@ public:
 
         verticalLayout->addWidget(pushButton_3);
 
+        pushButton_labelsC = new QPushButton(Widget);
+        pushButton_labelsC->setObjectName(QString::fromUtf8("pushButton_labelsC"));
+
+        verticalLayout->addWidget(pushButton_labelsC);
+
+        comboBoxCol = new QComboBox(Widget);
+        comboBoxCol->addItem(QString());
+        comboBoxCol->addItem(QString());
+        comboBoxCol->setObjectName(QString::fromUtf8("comboBoxCol"));
+
+        verticalLayout->addWidget(comboBoxCol);
+
         pushButton_DrawSlope = new QPushButton(Widget);
         pushButton_DrawSlope->setObjectName(QString::fromUtf8("pushButton_DrawSlope"));
 
@@ -141,11 +167,16 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "DTM", nullptr));
+        pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load data", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min:", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max:", nullptr));
         label_3->setText(QCoreApplication::translate("Widget", "dZ:", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Widget", "Create contours", nullptr));
+        pushButton_labelsC->setText(QCoreApplication::translate("Widget", "Labels", nullptr));
+        comboBoxCol->setItemText(0, QCoreApplication::translate("Widget", "Grey", nullptr));
+        comboBoxCol->setItemText(1, QCoreApplication::translate("Widget", "Colors", nullptr));
+
         pushButton_DrawSlope->setText(QCoreApplication::translate("Widget", "Draw slope", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
         pushButton_cleardt->setText(QCoreApplication::translate("Widget", "Clear DT", nullptr));
