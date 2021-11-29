@@ -41,6 +41,7 @@ public:
     void setGreycol(bool &greycol_){greycol = greycol_;};
     void setColors(bool &colors_){colors = colors_;};
 
+    void loadFile(std::string &path);
 
 signals:
 

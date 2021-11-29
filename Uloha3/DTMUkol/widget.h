@@ -36,12 +36,6 @@ private slots:
 
     void on_pushButton_labelsC_clicked();
 
-    void on_comboBox_currentIndexChanged(int index);
-
-    void on_comboBoxCol_currentIndexChanged(int index);
-
-    void on_pushButtonLoadFile_clicked();
-
     void on_pushButtonLoadF_clicked();
 
 private:
