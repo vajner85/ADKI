@@ -42,6 +42,8 @@ private slots:
 
     void on_pushButtonLoadFile_clicked();
 
+    void on_pushButtonLoadF_clicked();
+
 private:
     Ui::Widget *ui;
 };

@@ -142,16 +142,3 @@ void Widget::on_pushButton_labelsC_clicked()
         repaint();
 
 }
-
-
-
-void Widget::on_pushButtonLoadFile_clicked()
-{   //Load function
-    QString path(QFileDialog::getOpenFileName
-                 (this, tr("Opening of file"),
-                  "../",
-                  tr("Text Files (*.txt)")));
-       std::string path_ = path.toStdString();
-
-       ui->Canvas->loadFile(path_);
-}
