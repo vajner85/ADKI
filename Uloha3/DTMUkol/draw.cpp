@@ -182,4 +182,30 @@ void Draw::clearDT()
     repaint();
 }
 
+void Draw::loadFile(std::string &path)
+{
+    int id, fid = -1, fid_min = fid;
+    double x, y, z;
+    QPolygon pol;
 
+
+    //Loading files
+    std::ifstream file(path);
+
+    if (file.is_open())
+    {
+        //Read line
+        while (file >> x >> y >> id >> fid)
+        {
+            //Moving points to canvas viewed window
+            //x=(-x-740000)/3;
+            //y=(-y-1043000)/3;
+
+            //Add point to the list
+            points.push_back(QPoint3D(x,y,z));
+        }
+
+        //Closing file
+        file.close();
+    }
+}

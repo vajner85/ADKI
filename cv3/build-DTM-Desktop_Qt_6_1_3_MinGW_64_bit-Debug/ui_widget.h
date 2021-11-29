@@ -29,6 +29,7 @@ public:
     QHBoxLayout *horizontalLayout;
     Draw *Canvas;
     QVBoxLayout *verticalLayout;
+    QPushButton *pushButtonLoadFile;
     QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton;
     QSpacerItem *verticalSpacer_3;
@@ -66,6 +67,11 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        pushButtonLoadFile = new QPushButton(Widget);
+        pushButtonLoadFile->setObjectName(QString::fromUtf8("pushButtonLoadFile"));
+
+        verticalLayout->addWidget(pushButtonLoadFile);
+
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_4);
@@ -161,6 +167,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "DTM", nullptr));
+        pushButtonLoadFile->setText(QCoreApplication::translate("Widget", "Load file", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min:", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max:", nullptr));
