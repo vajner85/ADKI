@@ -27,13 +27,6 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButtonLoadFile">
-       <property name="text">
-        <string>Load data</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="verticalSpacer_4">
        <property name="orientation">
         <enum>Qt::Vertical</enum>

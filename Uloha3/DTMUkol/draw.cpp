@@ -182,31 +182,4 @@ void Draw::clearDT()
     repaint();
 }
 
-void Draw::loadFile(std::string &path)
-{
-    double x, y,z;
-    QPoint3D p;
 
-    //Loading files
-    std::ifstream file(path);
-
-    if (file.is_open())
-    {
-        //Read line
-        while (file >> x >> y >> z)
-        {
-            //Moving points to canvas viewed window
-            //x=x;
-            //y=y;
-            //z=z;
-
-            //Add point to the list
-            QPoint3D p(x,y,z);
-        }
-
-        points.push_back(p);
-
-        //Closing file
-        file.close();
-    }
-}

@@ -42,8 +42,6 @@ QT_MOC_LITERAL(196, 31), // "on_pushButton_DrawSlope_clicked"
 QT_MOC_LITERAL(228, 29), // "on_pushButton_labelsC_clicked"
 QT_MOC_LITERAL(290, 5), // "index"
 QT_MOC_LITERAL(296, 34), // "on_comboBoxCol_currentIndexCh..."
-QT_MOC_LITERAL(331, 29) // "on_pushButtonLoadFile_clicked"
-
     },
     "Widget\0on_pushButton_2_clicked\0\0"
     "on_pushButton_clicked\0"
@@ -119,7 +117,6 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 6: _t->on_pushButton_3_clicked(); break;
         case 7: _t->on_pushButton_DrawSlope_clicked(); break;
         case 8: _t->on_pushButton_labelsC_clicked(); break;
-        case 11: _t->on_pushButtonLoadFile_clicked(); break;
         default: ;
         }
     }
