@@ -17,6 +17,14 @@ Widget::Widget(QWidget *parent)
     ui->lineEdit->setText(QString::number(zmin));
     ui->lineEdit_2->setText(QString::number(zmax));
     ui->lineEdit_3->setText(QString::number(dz));
+
+
+    int width= ui->Canvas->getWidth();
+    int height= ui->Canvas->getHeight();
+
+    ui->Canvas->setHeight(height);
+    ui->Canvas->setWidth(width);
+
 }
 
 
@@ -63,12 +71,12 @@ void Widget::on_lineEdit_editingFinished()
 
 void Widget::on_lineEdit_2_editingFinished()
 {
-    zmax = ui->lineEdit->text().toDouble();
+    zmax = ui->lineEdit_2->text().toDouble();
 }
 
 void Widget::on_lineEdit_3_editingFinished()
 {
-    dz = ui->lineEdit->text().toDouble();
+    dz = ui->lineEdit_3->text().toDouble();
 }
 
 void Widget::on_pushButton_3_clicked()
@@ -152,4 +160,5 @@ void Widget::on_pushButtonLoadF_clicked()
        std::string path_ = path.toStdString();
 
        ui->Canvas->loadFile(path_);
+
 }

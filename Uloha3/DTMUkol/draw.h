@@ -18,6 +18,7 @@ private:
     std::vector<Triangle> triangles;
     std::vector<Edge> contourslabel,contourslabel2, contoursmain;
     boolean greycol, colors;
+    int width,height;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -42,6 +43,13 @@ public:
     void setColors(bool &colors_){colors = colors_;};
 
     void loadFile(std::string &path);
+
+    int getWidth(){return width;}
+    int getHeight(){return height;}
+
+    void setWidth(int width_){width=width_;};
+    void setHeight(int height_){height=height_;};
+
 
 signals:
 

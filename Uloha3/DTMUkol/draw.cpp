@@ -5,6 +5,9 @@
 #include <QWidget>
 #include <fstream>
 #include <iostream>
+#include <cmath>
+
+
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -184,28 +187,85 @@ void Draw::clearDT()
 
 void Draw::loadFile(std::string &path)
 {
-    double x, y, z;
+    double x, y, z, m, yy;
+    double xmin(10e16), ymin(10e16);
+    double xmax(0),ymax(0);
     std::vector<QPoint3D> pointss;
 
     //Loading files
     std::ifstream file(path);
 
+
     if (file.is_open())
     {
         //Read line
-        while (file >> x >> y >> z)
+        while (file >> y >> x >> z)
         {
-            //Moving points to canvas viewed window
-            //x=x;
-            //y=y;
-            //z=z;
+            if(x<0 && y<0)
+            {
+                yy=x;
+                x=-y;
+                y=-yy;
+             }
+
+            //Searching for min,max values of x,y
+            if(x<xmin)
+            {xmin=x;}
+            if(x>xmax)
+            {xmax=x;}
+
+            if(y<ymin)
+            {ymin=y;}
+            if(y>ymax)
+            {ymax=y;}
+
+
 
             //Add point to the list
             pointss.push_back(QPoint3D (x,y,z));
         }
 
+        //Save vector
         points=pointss;
+
         //Closing file
         file.close();
+    }
+
+    //Count real coord differences
+    double xdif=xmax-xmin;
+    double ydif=ymax-ymin;
+
+    //Count q widget coord differences
+    double xd=xdif/1049;
+    double yd=ydif/781;
+
+    //Setting correct transformation value
+    if (xd>yd)
+        m=xd;
+    else
+        m=yd;
+
+    //Transforming dataset to canvas
+    for(int i=0; i<points.size();i++)
+    {
+        points[i].setX((points[i].x()/m));
+        points[i].setY((points[i].y()/m));
+    }
+
+    //Move set to full window
+    //Computing virtual point on x,y min with canvas coords
+    double xmean=xmin/m;
+    double ymean=ymin/m;
+
+    //Computing differences in axes from canvas start point
+    double xmeandif=0-xmean;
+    double ymeandif=0-ymean;
+
+    //Moving coords start point to (0,0)
+    for(int i=0; i<points.size();i++)
+    {
+        points[i].setX((points[i].x())+xmeandif);
+        points[i].setY((points[i].y())+ymeandif);
     }
 }
