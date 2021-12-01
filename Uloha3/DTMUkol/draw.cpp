@@ -219,8 +219,6 @@ void Draw::loadFile(std::string &path)
             if(y>ymax)
             {ymax=y;}
 
-
-
             //Add point to the list
             pointss.push_back(QPoint3D (x,y,z));
         }
@@ -237,8 +235,8 @@ void Draw::loadFile(std::string &path)
     double ydif=ymax-ymin;
 
     //Count q widget coord differences
-    double xd=xdif/1049;
-    double yd=ydif/781;
+    double xd=11+xdif/1000;
+    double yd=11+ydif/650;
 
     //Setting correct transformation value
     if (xd>yd)

@@ -19,8 +19,8 @@ Widget::Widget(QWidget *parent)
     ui->lineEdit_3->setText(QString::number(dz));
 
 
-    int width= ui->Canvas->getWidth();
-    int height= ui->Canvas->getHeight();
+    int height = ui->Canvas->QWidget::height();
+    int width = ui->Canvas->QWidget::width();
 
     ui->Canvas->setHeight(height);
     ui->Canvas->setWidth(width);
