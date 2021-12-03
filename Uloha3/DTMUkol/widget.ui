@@ -29,7 +29,7 @@
      <item>
       <widget class="QPushButton" name="pushButtonLoadF">
        <property name="text">
-        <string>PushButton</string>
+        <string>Load data</string>
        </property>
       </widget>
      </item>
@@ -106,7 +106,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_labelsC">
        <property name="text">
-        <string>Labels</string>
+        <string>Label contours</string>
        </property>
       </widget>
      </item>
@@ -114,12 +114,12 @@
       <widget class="QComboBox" name="comboBoxCol">
        <item>
         <property name="text">
-         <string>Grey</string>
+         <string>Grey scale</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Colors</string>
+         <string>Color scale</string>
         </property>
        </item>
       </widget>

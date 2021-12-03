@@ -235,14 +235,14 @@ void Draw::loadFile(std::string &path)
     double ydif=ymax-ymin;
 
     //Count q widget coord differences
-    double xd=11+xdif/1000;
-    double yd=11+ydif/650;
+    double xd=xdif/1000;
+    double yd=ydif/650;
 
     //Setting correct transformation value
     if (xd>yd)
-        m=xd;
+        m=xd*1.1;
     else
-        m=yd;
+        m=yd*1.1;
 
     //Transforming dataset to canvas
     for(int i=0; i<points.size();i++)
@@ -257,8 +257,8 @@ void Draw::loadFile(std::string &path)
     double ymean=ymin/m;
 
     //Computing differences in axes from canvas start point
-    double xmeandif=0-xmean;
-    double ymeandif=0-ymean;
+    double xmeandif=0-xmean+11;
+    double ymeandif=0-ymean+11;
 
     //Moving coords start point to (0,0)
     for(int i=0; i<points.size();i++)
