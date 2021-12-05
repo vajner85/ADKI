@@ -167,15 +167,15 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "DTM", nullptr));
-        pushButtonLoadF->setText(QCoreApplication::translate("Widget", "PushButton", nullptr));
+        pushButtonLoadF->setText(QCoreApplication::translate("Widget", "Load data", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Create DT", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min:", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max:", nullptr));
         label_3->setText(QCoreApplication::translate("Widget", "dZ:", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Widget", "Create contours", nullptr));
-        pushButton_labelsC->setText(QCoreApplication::translate("Widget", "Labels", nullptr));
-        comboBoxCol->setItemText(0, QCoreApplication::translate("Widget", "Grey", nullptr));
-        comboBoxCol->setItemText(1, QCoreApplication::translate("Widget", "Colors", nullptr));
+        pushButton_labelsC->setText(QCoreApplication::translate("Widget", "Label contours", nullptr));
+        comboBoxCol->setItemText(0, QCoreApplication::translate("Widget", "Grey scale", nullptr));
+        comboBoxCol->setItemText(1, QCoreApplication::translate("Widget", "Color scale", nullptr));
 
         pushButton_DrawSlope->setText(QCoreApplication::translate("Widget", "Draw slope", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
