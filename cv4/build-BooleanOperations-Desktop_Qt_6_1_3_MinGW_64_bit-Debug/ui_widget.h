@@ -22,36 +22,29 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_QWidget
+class Ui_Widget
 {
 public:
-    QWidget *widget;
     QHBoxLayout *horizontalLayout;
     Draw *Canvas;
-    QSpacerItem *horizontalSpacer;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton;
-    QSpacerItem *verticalSpacer_2;
-    QLabel *label;
-    QComboBox *comboBoxOperation;
     QSpacerItem *verticalSpacer_3;
-    QPushButton *pushButtonOverlay;
+    QLabel *label;
+    QComboBox *comboBox;
+    QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButton_2;
     QSpacerItem *verticalSpacer;
-    QPushButton *pushButtonClear;
-    QSpacerItem *verticalSpacer_4;
+    QPushButton *pushButton_3;
 
-    void setupUi(QWidget *QWidget)
+    void setupUi(QWidget *Widget)
     {
-        if (QWidget->objectName().isEmpty())
-            QWidget->setObjectName(QString::fromUtf8("QWidget"));
-        QWidget->resize(1023, 654);
-        widget = new QWidget(QWidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(2, 10, 1021, 641));
-        horizontalLayout = new QHBoxLayout(widget);
+        if (Widget->objectName().isEmpty())
+            Widget->setObjectName(QString::fromUtf8("Widget"));
+        Widget->resize(1263, 856);
+        horizontalLayout = new QHBoxLayout(Widget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        Canvas = new Draw(widget);
+        Canvas = new Draw(Widget);
         Canvas->setObjectName(QString::fromUtf8("Canvas"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(1);
@@ -61,84 +54,76 @@ public:
 
         horizontalLayout->addWidget(Canvas);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         verticalLayout->addWidget(pushButton);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_2);
-
-        label = new QLabel(widget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        verticalLayout->addWidget(label);
-
-        comboBoxOperation = new QComboBox(widget);
-        comboBoxOperation->addItem(QString());
-        comboBoxOperation->addItem(QString());
-        comboBoxOperation->addItem(QString());
-        comboBoxOperation->addItem(QString());
-        comboBoxOperation->setObjectName(QString::fromUtf8("comboBoxOperation"));
-
-        verticalLayout->addWidget(comboBoxOperation);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_3);
 
-        pushButtonOverlay = new QPushButton(widget);
-        pushButtonOverlay->setObjectName(QString::fromUtf8("pushButtonOverlay"));
+        label = new QLabel(Widget);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        verticalLayout->addWidget(pushButtonOverlay);
+        verticalLayout->addWidget(label);
+
+        comboBox = new QComboBox(Widget);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+
+        verticalLayout->addWidget(comboBox);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
+        pushButton_2 = new QPushButton(Widget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        verticalLayout->addWidget(pushButton_2);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
 
-        pushButtonClear = new QPushButton(widget);
-        pushButtonClear->setObjectName(QString::fromUtf8("pushButtonClear"));
+        pushButton_3 = new QPushButton(Widget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
 
-        verticalLayout->addWidget(pushButtonClear);
-
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_4);
+        verticalLayout->addWidget(pushButton_3);
 
 
         horizontalLayout->addLayout(verticalLayout);
 
 
-        retranslateUi(QWidget);
+        retranslateUi(Widget);
 
-        QMetaObject::connectSlotsByName(QWidget);
+        QMetaObject::connectSlotsByName(Widget);
     } // setupUi
 
-    void retranslateUi(QWidget *QWidget)
+    void retranslateUi(QWidget *Widget)
     {
-        QWidget->setWindowTitle(QCoreApplication::translate("QWidget", "BooleanOperationsPolygon", nullptr));
-        pushButton->setText(QCoreApplication::translate("QWidget", "Switch A/B", nullptr));
-        label->setText(QCoreApplication::translate("QWidget", "Boolean operation:", nullptr));
-        comboBoxOperation->setItemText(0, QCoreApplication::translate("QWidget", "Union", nullptr));
-        comboBoxOperation->setItemText(1, QCoreApplication::translate("QWidget", "Intersect", nullptr));
-        comboBoxOperation->setItemText(2, QCoreApplication::translate("QWidget", "Difference A-B", nullptr));
-        comboBoxOperation->setItemText(3, QCoreApplication::translate("QWidget", "Difference B-A", nullptr));
+        Widget->setWindowTitle(QCoreApplication::translate("Widget", "Boolean Operations on Polygons", nullptr));
+        pushButton->setText(QCoreApplication::translate("Widget", "Swicht A/B", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "Boolean operation:", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("Widget", "Union", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("Widget", "Intersection", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("Widget", "Difference A-B", nullptr));
+        comboBox->setItemText(3, QCoreApplication::translate("Widget", "Difference B-A", nullptr));
 
-        pushButtonOverlay->setText(QCoreApplication::translate("QWidget", "Create overlay", nullptr));
-        pushButtonClear->setText(QCoreApplication::translate("QWidget", "Clear", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Widget", "Create overlay", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class QWidget: public Ui_QWidget {};
+    class Widget: public Ui_Widget {};
 } // namespace Ui
 
 QT_END_NAMESPACE

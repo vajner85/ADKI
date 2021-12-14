@@ -2,44 +2,43 @@
 #define TYPES_H
 #include <QtGui>
 
-#include "qpointfbo.h"
+//Foward declaration
 class QPointFBO;
 
 //Position of point and line
-typedef enum
-{
+typedef enum{
     LeftHP,
     RightHP,
     On
 } TPointLinePosition;
 
-//Position of polygon and line
-typedef enum
-{
+//Position of point and polygon
+typedef enum{
     Inner,
     Outer,
     Boundary
-}TPointPolygonPosition;
+} TPointPolygonPosition;
 
 //Boolean operation
-typedef enum
-{
+typedef enum {
     Union,
     Intersection,
     DifferenceA_B,
-    DifferenceB_A,
-}TBooleanOperation;
+    DifferenceB_A
+} TBooleanOperation;
 
 //Position of line and line
-typedef enum
-{
+typedef enum{
     Colinear,
     Parallel,
     Intersect,
     NonIntersect
-} T2LinePosition;
+} T2LinesPosition;
 
 //Polygon
-typedef std::vector<QPointF>TPolygon;
+typedef std::vector<QPointFBO> TPolygon;
+
+//Edges
+//typedef  std::vector<Edge> TEdges;
 
 #endif // TYPES_H
