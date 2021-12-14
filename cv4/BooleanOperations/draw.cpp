@@ -16,8 +16,8 @@ void Draw::paintEvent(QPaintEvent *event)
 
     for (int i=0; i<A.size(); i++)
     {
-       //qp.drawEllipse(A[i].x()-r,A[i].y()-r,2*r,2*r);
-       //pol.append(QPoint(A[i].x(),A[i].y()));
+       qp.drawEllipse(A[i].x()-r,A[i].y()-r,2*r,2*r);
+       pol.append(QPoint(A[i].x(),A[i].y()));
     }
 
     //Draw polygon

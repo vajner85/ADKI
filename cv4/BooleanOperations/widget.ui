@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="Draw" name="Canvas" native="true">
+    <widget class="draw" name="Canvas" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>1</horstretch>
@@ -123,9 +123,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>Draw</class>
+   <class>draw</class>
    <extends>QWidget</extends>
-   <header location="global">draw.h</header>
+   <header>draw.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

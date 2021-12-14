@@ -18,7 +18,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <draw.h>
+#include "draw.h"
 
 QT_BEGIN_NAMESPACE
 
