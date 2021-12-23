@@ -127,6 +127,7 @@ void Widget::on_pushButton_DrawSlope_clicked()
 
     bool greycol = TRUE;
     bool colors = FALSE;
+    bool meth = TRUE;
 
     if(ui->comboBoxCol->currentIndex()==0)
         {   greycol = TRUE;
@@ -140,6 +141,7 @@ void Widget::on_pushButton_DrawSlope_clicked()
 
     ui->Canvas->setColors(colors);
     ui->Canvas->setGreycol(greycol);
+    ui->Canvas->setMeth(meth);
 }
 
 void Widget::on_pushButton_labelsC_clicked()
@@ -162,3 +164,41 @@ void Widget::on_pushButtonLoadF_clicked()
        ui->Canvas->loadFile(path_);
 
 }
+
+void Widget::on_pushButton_Exposition_clicked()
+{
+    //Create contours
+    std::vector<Edge> dt = ui->Canvas->getDT();
+
+    //Is triangulation empty
+    if(dt.size() > 0)
+    {
+        //Analyze DTM
+        Algorithms a;
+        std::vector<Triangle> triangles = a.analyzeDTM(dt);
+
+        //Set triangles
+        ui->Canvas->setTriangle(triangles);
+
+        repaint();
+    }
+
+    bool greycol = TRUE;
+    bool colors = FALSE;
+    bool meth = FALSE;
+
+    if(ui->comboBoxCol->currentIndex()==0)
+        {   greycol = TRUE;
+            colors = FALSE;
+        }
+
+    if(ui->comboBoxCol->currentIndex()==1)
+        {   greycol = FALSE;
+            colors = TRUE;
+        }
+
+    ui->Canvas->setColors(colors);
+    ui->Canvas->setGreycol(greycol);
+    ui->Canvas->setMeth(meth);
+}
+

@@ -38,6 +38,8 @@ private slots:
 
     void on_pushButtonLoadF_clicked();
 
+    void on_pushButton_Exposition_clicked();
+
 private:
     Ui::Widget *ui;
 };

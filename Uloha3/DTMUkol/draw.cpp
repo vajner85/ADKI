@@ -52,6 +52,7 @@ void Draw::paintEvent(QPaintEvent *event)
         qp.drawLine(s_point,e_point);
     }
 
+    if (meth==TRUE){
     //Draw slope
     double k = 255/M_PI;
     for(Triangle t:triangles)
@@ -112,6 +113,75 @@ void Draw::paintEvent(QPaintEvent *event)
             qp.setPen(QColor(col,col,col));}
         }
 
+        //Create polygon
+        QPolygon pol;
+        pol.push_back(QPoint(p1.x(),p1.y()));
+        pol.push_back(QPoint(p2.x(),p2.y()));
+        pol.push_back(QPoint(p3.x(),p3.y()));
+
+        //Draw poylgon
+        qp.drawPolygon(pol);
+    }
+    } else if (meth == FALSE){
+    //Draw exposition
+    double k = 255/M_PI;
+    for(Triangle t:triangles)
+    {
+        //Get vertice
+        QPoint3D p1 = t.getP1();
+        QPoint3D p2 = t.getP2();
+        QPoint3D p3 = t.getP3();
+
+        if (greycol == TRUE)
+        {
+        //get exposition
+        double expo = t.getExposition();
+
+        //Convert to color
+        int col = 255-expo*k;
+        QColor color(col,col,col);
+
+        //Set pen & brush
+        qp.setBrush(color);
+        qp.setPen(color);
+        }
+
+        if (colors == TRUE)
+        {
+        //get exposition
+        double expo = t.getExposition();
+
+        //Convert to color
+        int col = 255-expo*k;
+        if((col >= 0) && (col <=40))
+            {qp.setBrush(QColor(255,69,0));
+             //qp.setPen(QColor(255,69,0));}
+             qp.setPen(QColor(col,col,col));}
+        else if ((col > 40) && (col <=80))
+            {qp.setBrush(QColor(255,99,71));
+             //qp.setPen(QColor(255,99,71));}
+            qp.setPen(QColor(col,col,col));}
+        else if ((col > 80) && (col <=100))
+            {qp.setBrush(QColor(255,127,80));
+             //qp.setPen(QColor(255,127,80));}
+             qp.setPen(QColor(col,col,col));}
+        else if ((col > 100) && (col <=120))
+            {qp.setBrush(QColor(255,140,0));
+             //qp.setPen(QColor(255,140,0));}
+             qp.setPen(QColor(col,col,col));}
+        else if ((col > 120) && (col <=160))
+            {qp.setBrush(QColor(255,165,0));
+             //qp.setPen(QColor(255,165,0));}
+             qp.setPen(QColor(col,col,col));}
+        else if ((col > 160) && (col <=200))
+            {qp.setBrush(QColor(255,190,0));
+            //qp.setPen(QColor(255,190,0));}
+            qp.setPen(QColor(col,col,col));}
+        else if ((col > 200) && (col <=255))
+            {qp.setBrush(QColor(255,215,0));
+            //qp.setPen(QColor(255,215,0));}
+            qp.setPen(QColor(col,col,col));}
+        }
 
         //Create polygon
         QPolygon pol;
@@ -121,6 +191,7 @@ void Draw::paintEvent(QPaintEvent *event)
 
         //Draw poylgon
         qp.drawPolygon(pol);
+    }
     }
 
     //Draw main contour lines

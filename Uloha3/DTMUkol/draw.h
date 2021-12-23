@@ -19,6 +19,7 @@ private:
     std::vector<Edge> contourslabel,contourslabel2, contoursmain;
     boolean greycol, colors;
     int width,height;
+    boolean meth;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -41,6 +42,8 @@ public:
 
     void setGreycol(bool &greycol_){greycol = greycol_;};
     void setColors(bool &colors_){colors = colors_;};
+
+    void setMeth(bool &meth_){meth = meth_;};
 
     void loadFile(std::string &path);
 

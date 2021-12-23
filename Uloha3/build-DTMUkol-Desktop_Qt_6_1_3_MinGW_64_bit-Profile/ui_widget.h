@@ -43,6 +43,7 @@ public:
     QPushButton *pushButton_labelsC;
     QComboBox *comboBoxCol;
     QPushButton *pushButton_DrawSlope;
+    QPushButton *pushButton_Exposition;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_2;
     QPushButton *pushButton_cleardt;
@@ -137,6 +138,11 @@ public:
 
         verticalLayout->addWidget(pushButton_DrawSlope);
 
+        pushButton_Exposition = new QPushButton(Widget);
+        pushButton_Exposition->setObjectName(QString::fromUtf8("pushButton_Exposition"));
+
+        verticalLayout->addWidget(pushButton_Exposition);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -178,6 +184,7 @@ public:
         comboBoxCol->setItemText(1, QCoreApplication::translate("Widget", "Color scale", nullptr));
 
         pushButton_DrawSlope->setText(QCoreApplication::translate("Widget", "Draw slope", nullptr));
+        pushButton_Exposition->setText(QCoreApplication::translate("Widget", "Draw exposition", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
         pushButton_cleardt->setText(QCoreApplication::translate("Widget", "Clear DT", nullptr));
     } // retranslateUi
