@@ -132,7 +132,11 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
         double xq = p1.x() + alpha*ux;
         double yq = p1.y() + alpha*uy;
 
-        return {QPointFBO(xq, yq), Intersect};
+        //Intersection and its properties
+        QPointFBO b(xq, yq);
+        b.setAlpha(alpha);
+        b.setBeta(beta);
+        return {b, Intersect};
     }
 
     //Lines do not intersect
@@ -263,6 +267,23 @@ TEdges Algorithms:: createOverlay(TPolygon &A, TPolygon &B, TBooleanOperation &o
         selectEdges(B, Outer, result);
     }
 
-
+    //Interssection
+    if (op == Intersection)
+    {
+        selectEdges(A, Inner, result);
+        selectEdges(B, Inner, result);
+    }
+    //DifferenceA_B
+    if (op == DifferenceA_B)
+    {
+        selectEdges(A, Outer, result);
+        selectEdges(B, Inner, result);
+    }
+    //DifferenceB_A
+    if (op == DifferenceB_A)
+    {
+        selectEdges(A, Inner, result);
+        selectEdges(B, Outer, result);
+    }
 
 }

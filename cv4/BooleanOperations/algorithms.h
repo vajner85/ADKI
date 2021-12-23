@@ -8,7 +8,7 @@
 class Algorithms
 {
 public:
-    Algorithms();
+    Algorithms(){};
 
     TPointLinePosition getPointLinePosition(QPointFBO &a,QPointFBO &p1,QPointFBO &p2);
     double get2LinesAngle(QPointFBO &p1, QPointFBO &p2, QPointFBO &p3, QPointFBO &p4);
