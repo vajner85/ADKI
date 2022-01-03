@@ -38,6 +38,11 @@ void Widget::on_pushButton_2_clicked()
 {
     //Clear all
     ui->Canvas->clear();
+
+    //Set method to null
+    bool meth = NULL;
+    ui->Canvas->setMeth(meth);
+
     repaint();
 }
 

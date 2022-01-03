@@ -7,7 +7,9 @@
 #include <iostream>
 #include <cmath>
 
-
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -195,8 +197,15 @@ void Draw::paintEvent(QPaintEvent *event)
     }
 
     //Draw main contour lines
-    QPen q2(Qt::gray, 2);
-    qp.setPen(q2);
+    if (meth == NULL)
+    { QPen q2(Qt::red, 2);
+        qp.setPen(q2);}
+    if (greycol == TRUE)
+    { QPen q2(Qt::gray, 2);
+        qp.setPen(q2);}
+    else if (colors == TRUE)
+    { QPen q2(Qt::black, 2);
+        qp.setPen(q2);}
 
     for (int i = 0; i < contoursmain.size(); i++)
     {
@@ -204,10 +213,16 @@ void Draw::paintEvent(QPaintEvent *event)
     }
 
     //Draw contour labels
-     QPen m(Qt::gray,1);
-     qp.setPen(m);
-
-     for (int i = 0; i < contourslabel.size(); i++)
+    if (meth == NULL)
+    { QPen m(Qt::red, 1);
+        qp.setPen(m);}
+     if (greycol == TRUE)
+    { QPen m(Qt::gray,1);
+        qp.setPen(m);}
+     else if (colors == TRUE)
+     { QPen m(Qt::black, 1);
+         qp.setPen(m);}
+     for (int i = 0; i < contourslabel.size(); i=i+2)
         { Edge one_contour = contourslabel[i];
          QPoint3D label_point1 = one_contour.getStart();
          QPoint3D label_point2 = one_contour.getEnd();
@@ -216,6 +231,9 @@ void Draw::paintEvent(QPaintEvent *event)
          label_point.setY((label_point1.y() + label_point2.y()) / 2);
          double z = label_point1.getZ();
          QString z_string = QString::number(z);
+
+         int random = rand();
+         if (random%2==1)
          qp.drawText(label_point, z_string);
         }
 
