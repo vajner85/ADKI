@@ -27,6 +27,34 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Load data from txt.:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Disclaimer:not working rn!</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonLoadFile">
+       <property name="text">
+        <string>Load</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Switch drawn polygon:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string>Swicht A/B</string>
@@ -91,6 +119,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Vizualize result:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
         <string>Create overlay</string>
@@ -120,7 +155,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>Clear all</string>
+        <string>Clear All</string>
        </property>
       </widget>
      </item>
