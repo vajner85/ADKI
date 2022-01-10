@@ -93,7 +93,7 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
 {
     //Get intersect of two lines
     double ux = p2.x() - p1.x();
-    double uy = p2.y() - p1.x();
+    double uy = p2.y() - p1.y();
 
     double vx = p4.x() - p3.x();
     double vy = p4.y() - p3.y();
@@ -133,9 +133,10 @@ std::tuple<QPointFBO,T2LinesPosition> Algorithms::get2LinesIntersection(QPointFB
         double yq = p1.y() + alpha*uy;
 
         //Intersection and its properties
-        QPointFBO b(xq, yq);
+        QPointFBO b (xq, yq);
         b.setAlpha(alpha);
         b.setBeta(beta);
+
         return {b, Intersect};
     }
 
@@ -202,7 +203,7 @@ void Algorithms::processIntersection(QPointFBO &b, double t, int &index, TPolygo
     {
         //Increment index and add point to polygon
         index++;
-        P.insert(P.begin()+index,b);
+        P.insert(P.begin()+index, b);
     }
 }
 
@@ -267,23 +268,26 @@ TEdges Algorithms:: createOverlay(TPolygon &A, TPolygon &B, TBooleanOperation &o
         selectEdges(B, Outer, result);
     }
 
-    //Interssection
-    if (op == Intersection)
+    //Intersection
+    else if(op == Intersection)
     {
         selectEdges(A, Inner, result);
         selectEdges(B, Inner, result);
     }
+
     //DifferenceA_B
-    if (op == DifferenceA_B)
+    else if(op == DifferenceA_B)
     {
         selectEdges(A, Outer, result);
         selectEdges(B, Inner, result);
     }
+
     //DifferenceB_A
-    if (op == DifferenceB_A)
+    else if (op == DifferenceB_A)
     {
         selectEdges(A, Inner, result);
         selectEdges(B, Outer, result);
     }
 
+    return result;
 }

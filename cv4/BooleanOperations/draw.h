@@ -18,13 +18,13 @@ public:
     explicit Draw(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
-    void switchSource(){addA = !addA;};
-    void drawPolygon(TPolygon &polygon, QPainter &qp);
-    TPolygon getA(){return A;};
-    TPolygon getB(){return B;};
-    void setEdges(TEdges res_){res = res_;};
-    void clear(){res.clear();};
-    void clearAll(){A.clear(),B.clear(), res.clear();}
+    void switchSource(){addA = !addA;}
+    void drawPolygon(TPolygon &pol, QPainter &qp);
+    TPolygon getA(){return A;}
+    TPolygon getB(){return B;}
+    void setEdges(TEdges &edg){res = edg;}
+    void clear(){res.clear();}
+    void clearAll(){A.clear(); B.clear(); res.clear();}
 
 signals:
 

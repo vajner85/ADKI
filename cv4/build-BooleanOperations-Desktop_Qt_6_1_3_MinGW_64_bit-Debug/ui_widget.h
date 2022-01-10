@@ -36,6 +36,7 @@ public:
     QPushButton *pushButton_2;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
 
     void setupUi(QWidget *Widget)
     {
@@ -97,6 +98,11 @@ public:
 
         verticalLayout->addWidget(pushButton_3);
 
+        pushButton_4 = new QPushButton(Widget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        verticalLayout->addWidget(pushButton_4);
+
 
         horizontalLayout->addLayout(verticalLayout);
 
@@ -118,6 +124,7 @@ public:
 
         pushButton_2->setText(QCoreApplication::translate("Widget", "Create overlay", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Widget", "Clear", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("Widget", "Clear all", nullptr));
     } // retranslateUi
 
 };

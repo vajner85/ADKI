@@ -1,9 +1,8 @@
 #include "draw.h"
 
-
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
-    addA =true;
+    addA = true;
 }
 
 void Draw::paintEvent(QPaintEvent *event)
@@ -12,15 +11,13 @@ void Draw::paintEvent(QPaintEvent *event)
     qp.begin(this);
 
     //Draw polygons
-    drawPolygon(A,qp);
-    drawPolygon(B,qp);
+    drawPolygon(A, qp);
+    drawPolygon(B, qp);
 
     //Draw edges
     qp.setPen(Qt::red);
-    for (Edge e:res)
-    {
+    for(Edge e:res)
         qp.drawLine(e.getStart(), e.getEnd());
-    }
 
     qp.end();
 }
@@ -34,8 +31,8 @@ void Draw::mousePressEvent(QMouseEvent *event)
     //Create point
     QPointFBO p(x,y);
 
-    //Add point to the selected vector A/B
-    if(addA)
+    //Add point to A, B
+    if (addA)
         A.push_back(p);
     else
         B.push_back(p);
@@ -50,13 +47,14 @@ void Draw::drawPolygon(TPolygon &polygon, QPainter &qp)
     int r=4;
     QPolygon pol;
 
-    //Convert  polygon to QPolygon
+    //Convert polygon to QPolygon
     for (int i=0; i<polygon.size(); i++)
     {
        qp.drawEllipse(polygon[i].x()-r,polygon[i].y()-r,2*r,2*r);
        pol.append(QPoint(polygon[i].x(),polygon[i].y()));
     }
 
+    //Draw polygon
     qp.drawPolygon(pol);
 }
 

@@ -120,7 +120,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>Clear all</string>
+        <string>Clear All</string>
        </property>
       </widget>
      </item>
