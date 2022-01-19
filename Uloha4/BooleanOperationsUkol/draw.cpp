@@ -69,7 +69,11 @@ void Draw::drawPolygon(TPolygon &polygon, QPainter &qp)
 void Draw::loadFile(std::string &path)
 {
     int id, i;
-    double x, y;
+    double x, y, yy, m;
+
+    double xmin(10e16), ymin(10e16);
+    double xmax(0),ymax(0);
+
     TPolygon A, B;
     TPolygon poly;
     std::vector<TPolygon>pol;
@@ -82,9 +86,23 @@ void Draw::loadFile(std::string &path)
         //Read line
         while (file >> id >> y >> x)
         {
-            //Moving points to canvas viewed window
-            //x=(-y-740000)/3;
-            //y=(-x-1043000)/3;
+            if(x<0 && y<0)
+            {
+                yy=x;
+                x=-y;
+                y=-yy;
+             }
+
+            //Searching for min,max values of x,y
+            if(x<xmin)
+            {xmin=x;}
+            if(x>xmax)
+            {xmax=x;}
+
+            if(y<ymin)
+            {ymin=y;}
+            if(y>ymax)
+            {ymax=y;}
 
             //Same ID, intermediate point
             if (i==id)
@@ -115,8 +133,57 @@ void Draw::loadFile(std::string &path)
         file.close();
 
     }
-
     A = pol[1];
     B = pol[2];
-    repaint();
+
+    //Count real coord differences
+    double xdif=xmax-xmin;
+    double ydif=ymax-ymin;
+
+    //Count q widget coord differences
+    double xd=xdif/1000;
+    double yd=ydif/650;
+
+    //Setting correct transformation value
+    if (xd>yd)
+        m=xd*1.1;
+    else
+        m=yd*1.1;
+
+    //Transforming dataset to canvas
+    for(int i=0; i<A.size();i++)
+    {
+        A[i].setX((A[i].x()/m));
+        A[i].setY((A[i].y()/m));
+    }
+
+    //Transforming dataset to canvas
+    for(int i=0; i<B.size();i++)
+    {
+        B[i].setX((B[i].x()/m));
+        B[i].setY((B[i].y()/m));
+    }
+
+    //Move set to full window
+    //Computing virtual point on x,y min with canvas coords
+    double xmean=xmin/m;
+    double ymean=ymin/m;
+
+    //Computing differences in axes from canvas start point
+    double xmeandif=0-xmean+11;
+    double ymeandif=0-ymean+11;
+
+    //Moving coords start point to (0,0)
+    for(int i=0; i<A.size();i++)
+    {
+        A[i].setX((A[i].x())+xmeandif);
+        A[i].setY((A[i].y())+ymeandif);
+    }
+
+    //Moving coords start point to (0,0)
+    for(int i=0; i<B.size();i++)
+    {
+        B[i].setX((B[i].x())+xmeandif);
+        B[i].setY((B[i].y())+ymeandif);
+    }
 }
