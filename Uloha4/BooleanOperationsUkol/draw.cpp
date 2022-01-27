@@ -10,6 +10,7 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 
 void Draw::paintEvent(QPaintEvent *event)
 {
+
     QPainter qp(this);
     qp.begin(this);
 
@@ -74,7 +75,6 @@ void Draw::loadFile(std::string &path)
     double xmin(10e16), ymin(10e16);
     double xmax(0),ymax(0);
 
-    TPolygon A, B;
     TPolygon poly;
     std::vector<TPolygon>pol;
 
