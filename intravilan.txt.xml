@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="cs"><Esri><CreaDate>20211019</CreaDate><CreaTime>16474100</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="d:\arcgis\Resources\ArcToolbox\toolboxes\Spatial Statistics Tools.tbx\ExportXYv" Date="20211019" Time="164741">ExportXYv intravilan OBJECTID;x;y Space C:\Users\User\Desktop\ADKI_zaloha\intravilan.txt ADD_FIELD_NAMES</Process></lineage></DataProperties></Esri></metadata>

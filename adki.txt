@@ -1,0 +1,21 @@
+    // /////////////////////////////
+    //Singularity
+    //dist a--p2
+    double vx2=a.x()-p2.x();
+    double vy2=a.y()-p2.y();
+
+    //dist p1--a, p2--a
+    double dp1a=sqrt(vx*vx+vy*vy);
+    double dp2a=sqrt(vx2*vx2+vy2*vy2);
+
+    double dp1p2=sqrt(ux*ux+uy*uy);
+
+    double dist=dp1a+dp2a;
+
+    if ((dist-dp1p2) <= eps && (dist-dp1p2)>=eps)
+        { return -1;}
+    // ////////////////////////////////////
+
+    //Singulairty test -- point a identical to p1/p2
+    if ( ((a.x()==p1.x()) && (a.y()==p1.y())) || ((a.x()==p2.x()) && (a.y()==p2.y())) )
+    {return -1;}

@@ -1,0 +1,6 @@
+painter.scale
+
+sirka skutecnost/sirka okna
+delka skutecnost/delka okna
+
+vetsi z nich = m
